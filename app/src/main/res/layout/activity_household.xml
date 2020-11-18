@@ -12,7 +12,7 @@
         android:id="@+id/create_house"
         android:layout_width="248dp"
         android:layout_height="61dp"
-        android:layout_marginStart="95dp"
+        android:layout_marginStart="85dp"
         android:layout_marginLeft="95dp"
         android:layout_marginTop="177dp"
         android:layout_marginEnd="157dp"
