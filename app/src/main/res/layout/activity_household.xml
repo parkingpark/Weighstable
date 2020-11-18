@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HouseholdActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:layout_marginBottom="613dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="#FF7700"
+            app:contentScrim="?android:attr/colorFocusedHighlight"
+
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="82dp"
+                android:contentDescription="TODO"
+                app:srcCompat="@drawable/logo_white" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="58dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/capture" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="177dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginLeft="152dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginRight="152dp"
+        android:layout_marginBottom="568dp"
+        android:background="#595959"
+        android:text=" Household"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="bottom|center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/create_house"
+        android:layout_width="207dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginLeft="161dp"
+        android:layout_marginTop="177dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginRight="157dp"
+        android:layout_marginBottom="342dp"
+        android:text="Create Household"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:backgroundTint="#595959"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
