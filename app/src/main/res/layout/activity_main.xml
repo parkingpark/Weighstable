@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3C3F41">
+    android:background="#FFFFFF">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -39,54 +39,13 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView2"
-        android:layout_width="match_parent"
-
-
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="?attr/actionBarSize">
-
-            <fragment
-                android:id="@+id/nav_host_fragment"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:defaultNavHost="true"
-                app:layout_constraintBottom_toTopOf="@id/nav_view"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:navGraph="@navigation/mobile_navigation" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        app:layout_anchor="@+id/nestedScrollView2"
-        app:layout_anchorGravity="bottom|center"
-        app:menu="@menu/bottom_nav_menu" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="107dp"
         android:layout_height="wrap_content"
         android:background="#595959"
-        android:text=" Home"
+        android:gravity="clip_vertical|center_horizontal"
+        android:text="Home"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"
         app:layout_anchor="@+id/appbar"
