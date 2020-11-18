@@ -35,6 +35,7 @@
                 android:layout_width="58dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/capture" />
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -91,6 +92,13 @@
         android:textColor="#FFFFFF"
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="bottom|center" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:text="button"
+        tools:text="SQL" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
