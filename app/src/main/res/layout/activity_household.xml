@@ -9,7 +9,7 @@
     android:background="#FFFFFF">
 
     <Button
-        android:id="@+id/create_house3"
+        android:id="@+id/create_house"
         android:layout_width="248dp"
         android:layout_height="61dp"
         android:layout_marginStart="95dp"
@@ -21,6 +21,8 @@
         android:text="Create Household"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:backgroundTint="#595959"
+        app:layout_anchor="@+id/create_house"
+        app:layout_anchorGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
