@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <Button
+        android:id="@+id/check_server"
+        android:layout_width="248dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="177dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginRight="157dp"
+        android:layout_marginBottom="342dp"
+        android:text="Check Server"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:backgroundTint="#595959"
+        app:layout_anchor="@+id/check_server"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="248dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginRight="157dp"
+        android:layout_marginBottom="342dp"
+        android:gravity="center"
+        android:text="Connection Status:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:background="#FFFFFF">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="#FF7700"
+            app:contentScrim="?android:attr/colorFocusedHighlight"
+
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="82dp"
+                app:srcCompat="@drawable/logo_white" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="58dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/capture" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#595959"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Data"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="bottom|center" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
