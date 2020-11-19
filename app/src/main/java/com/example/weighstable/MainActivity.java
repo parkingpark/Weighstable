@@ -13,6 +13,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import static io.particle.android.sdk.cloud.ParticleCloudSDK.*;
 import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,44 +36,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //enabling android cloud apk for particle
-        ParticleCloudSDK.init(this);
+
+        //ParticleCloudSDK.init(this);
 
         setContentView(R.layout.activity_main);//textView = findViewById(R.id.textView);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        try {
-            Class.forName(classes);
-            connection = DriverManager.getConnection(url, username, password);
-            //textView.setText("SUCCESS");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            //textView.setText("ERROR");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            //textView.setText("FAILURE");
-        }
+
 
     }
-
-    public void sqlButton(View view) {
-        if (connection!=null) {
-            Statement statement = null;
-            try {
-                statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("Select * from TEST_TABLE;");
-                while (resultSet.next()) {
-                    //textview.setText(resultSet.getString(1));
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-        else {
-            //textView.setText("Connection is null");
-        }
-
-    }
-
 }
