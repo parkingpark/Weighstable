@@ -8,6 +8,26 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <Button
+        android:id="@+id/create_house"
+        android:layout_width="248dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="177dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginRight="157dp"
+        android:layout_marginBottom="342dp"
+        android:text="Create Household"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:backgroundTint="#595959"
+        app:layout_anchor="@+id/create_house"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
@@ -35,29 +55,21 @@
                 android:layout_width="58dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/capture" />
-
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="107dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="#595959"
-        android:gravity="clip_vertical|center_horizontal"
-        android:text="Home"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Household"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="bottom|center" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="48dp"
-        android:layout_height="wrap_content"
-        android:text="button"
-        tools:text="SQL" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
