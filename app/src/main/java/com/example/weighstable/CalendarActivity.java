@@ -29,9 +29,6 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
 
         String trashDay = (String) mySpinner.getSelectedItem();
 
-        //txtView = (TextView)findViewById(R.id.textView3);
-        mySpinner.setOnItemSelectedListener(this);
-
 
     }
 
