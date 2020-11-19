@@ -8,6 +8,7 @@
     <string name="title">title</string>
     <string name="trashDay">trashDay</string>
 
+
     <string-array name="names">
         <item>Sunday</item>
         <item>Monday</item>
@@ -17,5 +18,6 @@
         <item>Friday</item>
         <item>Saturday</item>
     </string-array>
+
 
 </resources>
