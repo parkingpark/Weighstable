@@ -7,4 +7,15 @@
     <string name="menu">menu</string>
     <string name="title">title</string>
     <string name="trashDay">trashDay</string>
+
+    <string-array name="names">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
 </resources>

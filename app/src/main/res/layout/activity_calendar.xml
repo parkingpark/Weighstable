@@ -9,7 +9,7 @@
     android:background="#FFFFFF">
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="600dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <CalendarView
-        android:id="@+id/calendarView2"
+        android:id="@+id/calendarView"
         android:layout_width="360dp"
         android:layout_height="345dp"
         android:layout_marginStart="38dp"
@@ -71,6 +71,5 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
