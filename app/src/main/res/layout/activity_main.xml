@@ -2,21 +2,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="206dp"
-        android:layout_height="176dp"
-        android:layout_marginStart="226dp"
-        android:layout_marginLeft="226dp"
-        android:layout_marginTop="225dp"
-        android:background="#FF7700"
-        app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -51,6 +40,16 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="206dp"
+        android:layout_height="176dp"
+        android:layout_marginStart="226dp"
+        android:layout_marginLeft="226dp"
+        android:layout_marginTop="225dp"
+        android:background="#FF7700"
+        app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 
     <TextView
         android:id="@+id/home"
