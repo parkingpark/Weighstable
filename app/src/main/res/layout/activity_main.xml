@@ -10,11 +10,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="206dp"
-        android:layout_height="176dp"
-        android:layout_marginStart="226dp"
-        android:layout_marginLeft="226dp"
-        android:layout_marginTop="225dp"
+        android:layout_width="170dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="245dp"
+        android:layout_marginLeft="245dp"
+        android:layout_marginTop="210dp"
         android:background="#FF7700"
         app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 
@@ -70,7 +70,7 @@
         android:layout_height="241dp"
         android:layout_marginStart="125dp"
         android:layout_marginLeft="125dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="525dp"
         app:srcCompat="@drawable/w" />
 
     <TextView
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="475dp"
         android:contentDescription="@string/trashDay"
         android:text="Trash Day:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="160dp"
         android:text="Capacity"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold" />
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="295dp"
         android:layout_marginLeft="295dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="160dp"
         android:text="Weight"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold" />
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="425dp"
+        android:layout_marginTop="350dp"
         android:text="Capacity Limit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -123,7 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
         android:layout_marginLeft="250dp"
-        android:layout_marginTop="425dp"
+        android:layout_marginTop="350dp"
         android:text="Weight Limit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -133,7 +133,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="355dp"
         android:editable="true"
         android:ems="10"
         android:gravity="center_horizontal"
@@ -147,7 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="330dp"
         android:layout_marginLeft="330dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="355dp"
         android:editable="true"
         android:ems="10"
         android:gravity="center_horizontal"
@@ -157,9 +157,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="206dp"
-        android:layout_height="176dp"
-        android:layout_marginTop="225dp"
+        android:layout_width="170dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="210dp"
         android:background="#FF7700"
         app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 
