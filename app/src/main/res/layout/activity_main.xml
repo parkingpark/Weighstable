@@ -111,7 +111,8 @@
         android:gravity="center_horizontal"
         android:inputType="number"
         android:text="0"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/weightInput"
@@ -125,7 +126,8 @@
         android:gravity="center_horizontal"
         android:inputType="number"
         android:text="0"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -168,6 +170,14 @@
         android:layout_marginLeft="125dp"
         android:layout_marginTop="525dp"
         app:srcCompat="@drawable/w" />
+
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="475dp"
+        android:textColor="@color/black" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
