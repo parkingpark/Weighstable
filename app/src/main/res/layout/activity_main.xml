@@ -2,21 +2,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="206dp"
-        android:layout_height="176dp"
-        android:layout_marginStart="226dp"
-        android:layout_marginLeft="226dp"
-        android:layout_marginTop="225dp"
-        android:background="#FF7700"
-        app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -64,51 +53,16 @@
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="bottom|center" />
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="197dp"
-        android:layout_height="241dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="600dp"
-        app:srcCompat="@drawable/w" />
-
-    <TextView
-        android:id="@+id/trashDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="550dp"
-        android:contentDescription="@string/trashDay"
-        android:text="Trash Day:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold" />
-
-    <Spinner
-        android:id="@+id/trashDayInput"
-        android:layout_width="264dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="545dp"
-        android:layout_marginBottom="207dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trashDayInput" />
-
     <TextView
         android:id="@+id/capacity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="175dp"
-        android:text="Capacity"
+        android:layout_marginTop="160dp"
+        android:text="@string/capacity"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
@@ -117,9 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="295dp"
         android:layout_marginLeft="295dp"
-        android:layout_marginTop="175dp"
-        android:text="Weight"
+        android:layout_marginTop="160dp"
+        android:text="@string/weight"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
@@ -128,9 +83,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="425dp"
-        android:text="Capacity Limit"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:layout_marginTop="350dp"
+        android:text="@string/capacity_limit"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/weightLimit"
@@ -138,9 +94,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
         android:layout_marginLeft="250dp"
-        android:layout_marginTop="425dp"
-        android:text="Weight Limit"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:layout_marginTop="350dp"
+        android:text="@string/weight_limit"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/capacityInput"
@@ -148,13 +105,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="355dp"
         android:editable="true"
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="number"
         android:text="0"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/weightInput"
@@ -162,21 +120,64 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="330dp"
         android:layout_marginLeft="330dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="355dp"
         android:editable="true"
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="number"
         android:text="0"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="206dp"
-        android:layout_height="176dp"
-        android:layout_marginTop="225dp"
+        android:layout_width="170dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="210dp"
         android:background="#FF7700"
         app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="170dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="245dp"
+        android:layout_marginLeft="245dp"
+        android:layout_marginTop="210dp"
+        android:background="#FF7700"
+        app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
+
+    <TextView
+        android:id="@+id/trashDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="475dp"
+        android:contentDescription="@string/trashDay"
+        android:text="@string/trashDay"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="197dp"
+        android:layout_height="241dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="525dp"
+        app:srcCompat="@drawable/w" />
+
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="475dp"
+        android:textColor="@color/black" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
