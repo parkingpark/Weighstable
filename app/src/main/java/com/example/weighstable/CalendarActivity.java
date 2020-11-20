@@ -27,9 +27,9 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
-        String trashDay = (String) mySpinner.getSelectedItem();
+        //String trashDay = (String) mySpinner.getSelectedItem();
 
-         //txtView = (TextView)findViewById(R.id.textView3);
+         txtView = (TextView)findViewById(R.id.textView3);
          mySpinner.setOnItemSelectedListener(this);
 
 
