@@ -85,21 +85,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold" />
 
-    <Spinner
-        android:id="@+id/trashDayInput"
-        android:layout_width="264dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="545dp"
-        android:layout_marginBottom="207dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trashDayInput" />
-
     <TextView
         android:id="@+id/capacity"
         android:layout_width="wrap_content"
