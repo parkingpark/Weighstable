@@ -9,6 +9,4 @@
     android:padding="10dip"
     android:textColor="@color/white"
     android:textSize="20sp"
-    android:textStyle="bold"
-    android:clickable="true"
-    android:focusable="true" />
+    android:textStyle="bold" />

@@ -210,7 +210,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="475dp"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="22sp" />
 
     <ListView
         android:id="@+id/menu_view"

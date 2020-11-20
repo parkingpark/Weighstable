@@ -63,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
                 menu_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                        String selected = parent.getItemAtPosition(position).toString();
+                        if (selected.equals("Household")) {
+                            startActivity(new Intent(MainActivity.this, HouseholdActivity.class));
+                        }
                     }
                 });
                 if (menu_view.getVisibility() == View.INVISIBLE){
