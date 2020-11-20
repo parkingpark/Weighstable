@@ -83,6 +83,7 @@
         android:contentDescription="@string/trashDay"
         android:text="@string/trashDay"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
@@ -94,6 +95,7 @@
         android:layout_marginTop="160dp"
         android:text="@string/capacity"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
@@ -105,6 +107,7 @@
         android:layout_marginTop="160dp"
         android:text="@string/weight"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
@@ -115,7 +118,8 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="350dp"
         android:text="@string/capacity_limit"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/weightLimit"
@@ -125,7 +129,8 @@
         android:layout_marginLeft="250dp"
         android:layout_marginTop="350dp"
         android:text="@string/weight_limit"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/capacityInput"
