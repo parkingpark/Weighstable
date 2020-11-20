@@ -4,13 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.weighstable.household.Household;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -77,6 +83,35 @@ public class DataActivity extends AppCompatActivity {
                 }
                 else {
                     textview.setText("Connection is null");
+                }
+            }
+        });
+
+        ImageView menu = (ImageView) findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListView menu_view = (ListView) findViewById(R.id.menu_view);
+                String[] pages = {"Home", "Household", "Calendar"};
+                ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(DataActivity.this, R.layout.listview, pages);
+                menu_view.setAdapter(pages_adapter);
+                menu_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selected = parent.getItemAtPosition(position).toString();
+                        if (selected.equals("Home")) {
+                            startActivity(new Intent(DataActivity.this, MainActivity.class));
+                        } else if (selected.equals("Household")) {
+                            startActivity(new Intent(DataActivity.this, HouseholdActivity.class));
+                        } else if (selected.equals("Calendar")) {
+                            startActivity(new Intent(DataActivity.this, CalendarActivity.class));
+                        }
+                    }
+                });
+                if (menu_view.getVisibility() == View.INVISIBLE){
+                    menu_view.setVisibility(View.VISIBLE);
+                } else {
+                    menu_view.setVisibility(View.INVISIBLE);
                 }
             }
         });
