@@ -124,5 +124,14 @@
         android:dividerHeight="2dp"
         android:visibility="invisible" />
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="157dp"
+        android:layout_height="201dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="585dp"
+        app:srcCompat="@drawable/w" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

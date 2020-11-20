@@ -166,11 +166,11 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="197dp"
-        android:layout_height="241dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="525dp"
+        android:layout_width="157dp"
+        android:layout_height="201dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="585dp"
         app:srcCompat="@drawable/w" />
 
     <TextView
