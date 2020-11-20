@@ -37,9 +37,6 @@ public class DataActivity extends AppCompatActivity {
     private static String url = "jdbc:jtds:sqlserver://" + ip + ":" + port + "/" + database;
     private Connection connection = null;
 
-    Button check_server = (Button) findViewById(R.id.check_server);
-    TextView textview = (TextView) findViewById(R.id.textView);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +44,9 @@ public class DataActivity extends AppCompatActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        Button check_server = (Button) findViewById(R.id.check_server);
+        TextView textview = (TextView) findViewById(R.id.textView);
 
         try {
             Class.forName(classes);
@@ -60,25 +60,25 @@ public class DataActivity extends AppCompatActivity {
             textview.setText("FAILURE");
         }
 
-    check_server.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            if (connection!=null) {
-                Statement statement = null;
-                try {
-                    statement = connection.createStatement();
-                    ResultSet resultSet = statement.executeQuery("Select * from TEST_TABLE;");
-                    while (resultSet.next()) {
-                        textview.setText(resultSet.getString(1));
+        check_server.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (connection!=null) {
+                    Statement statement = null;
+                    try {
+                        statement = connection.createStatement();
+                        ResultSet resultSet = statement.executeQuery("Select * from TEST_TABLE;");
+                        while (resultSet.next()) {
+                            textview.setText(resultSet.getString(1));
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
                     }
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
+                }
+                else {
+                    textview.setText("Connection is null");
                 }
             }
-            else {
-                textview.setText("Connection is null");
-            }
-        }
-    });
+        });
     }
 }
