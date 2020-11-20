@@ -78,5 +78,14 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/homeNav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Home"
+        android:translationX="25px"
+        android:translationY="1750px"
+        app:iconPadding="20px" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

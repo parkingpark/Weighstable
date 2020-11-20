@@ -36,6 +36,14 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
          mySpinner.setOnItemSelectedListener(this);
 
 
+        Button yourButton = (Button) findViewById(R.id.homeNav);
+
+        yourButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(CalendarActivity.this, MainActivity.class));
+            }
+        });
+
     }
 
 
