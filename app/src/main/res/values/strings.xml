@@ -11,6 +11,8 @@
     <string name="weight">Weight</string>
     <string name="capacity_limit">Capacity Limit</string>
     <string name="weight_limit">Weight Limit</string>
+    <string name="capacity_input">Capacity Input</string>
+    <string name="weight_input">Weight Input</string>
 
     <string-array name="names">
         <item>Sunday</item>
