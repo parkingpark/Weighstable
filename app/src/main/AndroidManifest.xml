@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Weighstable">
-        <activity android:name=".DataActivity">
+        <activity
+            android:name=".DataActivity"
             android:exported="true" />
-        </activity>
         <activity
             android:name=".HouseholdActivity"
             android:exported="true" />
@@ -24,7 +24,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
         <activity
             android:name=".CalendarActivity"
             android:exported="true" />
