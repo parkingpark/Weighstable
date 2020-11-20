@@ -66,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
                         String selected = parent.getItemAtPosition(position).toString();
                         if (selected.equals("Household")) {
                             startActivity(new Intent(MainActivity.this, HouseholdActivity.class));
+                        } else if (selected.equals("Calendar")) {
+                            startActivity(new Intent(MainActivity.this, CalendarActivity.class));
+                        } else if (selected.equals("Data")) {
+                            startActivity(new Intent(MainActivity.this, DataActivity.class));
                         }
                     }
                 });

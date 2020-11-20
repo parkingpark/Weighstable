@@ -114,5 +114,15 @@
         android:dividerHeight="2dp"
         android:visibility="invisible" />
 
+    <ListView
+        android:id="@+id/menu_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:background="#595959"
+        android:divider="@color/white"
+        android:dividerHeight="2dp"
+        android:visibility="invisible" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
