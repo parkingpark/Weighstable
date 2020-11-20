@@ -35,6 +35,35 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
          //txtView = (TextView)findViewById(R.id.textView3);
          mySpinner.setOnItemSelectedListener(this);
 
+        ImageView menu = (ImageView) findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListView menu_view = (ListView) findViewById(R.id.menu_view);
+                String[] pages = {"Home", "Household", "Data"};
+                ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(CalendarActivity.this, R.layout.listview, pages);
+                menu_view.setAdapter(pages_adapter);
+                menu_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selected = parent.getItemAtPosition(position).toString();
+                        if (selected.equals("Home")) {
+                            startActivity(new Intent(CalendarActivity.this, MainActivity.class));
+                        } else if (selected.equals("Household")) {
+                            startActivity(new Intent(CalendarActivity.this, HouseholdActivity.class));
+                        } else if (selected.equals("Data")) {
+                            startActivity(new Intent(CalendarActivity.this, DataActivity.class));
+                        }
+                    }
+                });
+                if (menu_view.getVisibility() == View.INVISIBLE){
+                    menu_view.setVisibility(View.VISIBLE);
+                } else {
+                    menu_view.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
 
         Button yourButton = (Button) findViewById(R.id.homeNav);
 
