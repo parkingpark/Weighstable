@@ -21,7 +21,7 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        mySpinner = findViewById(R.id.spinner1);
+        mySpinner = findViewById(R.id.spinner);
         String[] days = getResources().getStringArray(R.array.names);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, days);
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -38,7 +38,7 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (parent.getId() == R.id.spinner1) {
+        if (parent.getId() == R.id.spinner) {
             String valueFromSpinner = parent.getItemAtPosition(position).toString();
             txtView.setText(valueFromSpinner);
         }
