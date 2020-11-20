@@ -178,29 +178,5 @@
         android:background="#FF7700"
         app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 
-    <TextView
-        android:id="@+id/displayWeight"
-        android:layout_width="53dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center_vertical"
-        android:textColor="#8F2301"
-        android:textSize="24sp"
-        app:layout_anchor="@+id/imageView2"
-        app:layout_anchorGravity="center" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/displaycapacity"
-        android:layout_width="53dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center_vertical"
-        android:textColor="#8F2301"
-        android:textSize="24sp"
-        app:layout_anchor="@+id/imageView"
-        app:layout_anchorGravity="center" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
