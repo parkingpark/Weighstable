@@ -21,7 +21,7 @@ public class HouseholdActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_household);
-        create_house = (Button) findViewById(R.id.create_house);
+        create_house = (Button) findViewById(R.id.create_household);
         household_form = (ScrollView) findViewById(R.id.household_form);
 
         create_house.setOnClickListener(new View.OnClickListener() {
