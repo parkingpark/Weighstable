@@ -7,7 +7,10 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -48,6 +51,31 @@ public class MainActivity extends AppCompatActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        ImageView menu = (ImageView) findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListView menu_view = (ListView) findViewById(R.id.menu_view);
+                String[] pages = {"Household", "Calendar", "Data"};
+                ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.listview, pages);
+                menu_view.setAdapter(pages_adapter);
+                menu_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selected = parent.getItemAtPosition(position).toString();
+                        if (selected.equals("Household")) {
+                            startActivity(new Intent(MainActivity.this, HouseholdActivity.class));
+                        }
+                    }
+                });
+                if (menu_view.getVisibility() == View.INVISIBLE){
+                    menu_view.setVisibility(View.VISIBLE);
+                } else {
+                    menu_view.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
     }
 
