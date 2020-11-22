@@ -3,16 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="Home">Home</string>
+    <string name="Home">home</string>
     <string name="menu">menu</string>
     <string name="title">title</string>
-    <string name="trashDay">Trash Day :</string>
-    <string name="capacity">Capacity</string>
-    <string name="weight">Weight</string>
-    <string name="capacity_limit">Capacity Limit</string>
-    <string name="weight_limit">Weight Limit</string>
-    <string name="capacity_input">Capacity Input</string>
-    <string name="weight_input">Weight Input</string>
+    <string name="trashDay">trashDay</string>
 
     <string-array name="names">
         <item>Sunday</item>
