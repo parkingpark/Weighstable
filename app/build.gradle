@@ -8,10 +8,11 @@ android {
 
     defaultConfig {
         applicationId "com.example.weighstable"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,6 +32,7 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
@@ -43,4 +45,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'net.sourceforge.jtds:jtds:1.3.1'
     implementation 'io.particle:cloudsdk:0.5.1'
+    implementation 'io.particle:devicesetup:0.6.3'
+    implementation 'com.android.support:multidex:1.0.3'
 }

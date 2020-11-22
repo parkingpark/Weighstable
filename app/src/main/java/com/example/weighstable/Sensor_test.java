@@ -2,10 +2,8 @@ package com.example.weighstable;
 
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.io.IOException;

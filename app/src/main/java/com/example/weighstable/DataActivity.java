@@ -2,10 +2,7 @@ package com.example.weighstable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -16,16 +13,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.weighstable.household.Household;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import static io.particle.android.sdk.cloud.ParticleCloudSDK.*;
-import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
