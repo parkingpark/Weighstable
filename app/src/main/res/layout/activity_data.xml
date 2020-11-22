@@ -20,6 +20,7 @@
         android:text="Check Server"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:backgroundTint="#595959"
+        app:layout_anchor="@+id/check_server"
         app:layout_anchorGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,16 +84,6 @@
         android:textColor="#FFFFFF"
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="bottom|center" />
-
-    <ListView
-        android:id="@+id/menu_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:background="#595959"
-        android:divider="@color/white"
-        android:dividerHeight="2dp"
-        android:visibility="invisible" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
