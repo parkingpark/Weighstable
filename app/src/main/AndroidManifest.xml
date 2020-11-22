@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Weighstable">
-        <activity android:name=".DataActivity"></activity>
-        <activity android:name=".HouseholdActivity" />
+        <activity
+            android:name=".DataActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HouseholdActivity"
+            android:exported="true" />
         <activity
             android:name=".Sensor"
             android:exported="true"/>
@@ -19,7 +23,6 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
