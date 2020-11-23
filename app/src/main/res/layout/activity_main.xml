@@ -23,63 +23,98 @@
             app:toolbarId="@+id/toolbar">
 
             <ImageView
-                android:id="@+id/title"
+                android:id="@+id/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/title"
                 app:srcCompat="@drawable/logo_white" />
 
             <ImageView
-                android:id="@+id/menu"
+                android:id="@+id/nav"
                 android:layout_width="58dp"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:contentDescription="@string/menu"
-                app:srcCompat="@drawable/capture"
-                android:focusable="true" />
-
+                app:srcCompat="@drawable/capture" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/home"
-        android:layout_width="107dp"
+        android:id="@+id/title_home"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="#595959"
-        android:gravity="clip_vertical|center_horizontal"
-        android:text="@string/Home"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/title_home"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="bottom|center" />
 
     <TextView
-        android:id="@+id/capacity"
+        android:id="@+id/capacity_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="160dp"
-        android:text="@string/capacity"
+        android:text="@string/capacity_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/weight"
+        android:id="@+id/weight_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="295dp"
         android:layout_marginLeft="295dp"
         android:layout_marginTop="160dp"
-        android:text="@string/weight"
+        android:text="@string/weight_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
+    <ImageView
+        android:id="@+id/capacity_display_box"
+        android:layout_width="170dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="210dp"
+        android:background="#FF7700"
+        app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
+
+    <ImageView
+        android:id="@+id/weight_display_box"
+        android:layout_width="170dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="245dp"
+        android:layout_marginLeft="245dp"
+        android:layout_marginTop="210dp"
+        android:background="#FF7700"
+        app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
+
     <TextView
-        android:id="@+id/capacityLimit"
+        android:id="@+id/display_weight"
+        android:layout_width="53dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="235dp"
+        android:textColor="#8F2301"
+        android:textSize="24sp"
+        app:layout_anchorGravity="center" />
+
+    <TextView
+        android:id="@+id/display_capacity"
+        android:layout_width="53dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="235dp"
+        android:textColor="#8F2301"
+        android:textSize="24sp"
+        app:layout_anchorGravity="center" />
+
+    <TextView
+        android:id="@+id/capacity_limit"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -91,7 +126,7 @@
         android:textSize="21sp" />
 
     <TextView
-        android:id="@+id/weightLimit"
+        android:id="@+id/weight_limit"
         android:layout_width="86dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="235dp"
@@ -103,7 +138,7 @@
         android:textSize="21sp" />
 
     <EditText
-        android:id="@+id/capacityInput"
+        android:id="@+id/capacity_input"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
@@ -117,7 +152,7 @@
         android:textColor="@color/black" />
 
     <EditText
-        android:id="@+id/weightInput"
+        android:id="@+id/weight_input"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="305dp"
@@ -130,78 +165,39 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="170dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="210dp"
-        android:background="#FF7700"
-        app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="170dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="245dp"
-        android:layout_marginLeft="245dp"
-        android:layout_marginTop="210dp"
-        android:background="#FF7700"
-        app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
-
     <TextView
-        android:id="@+id/trashDay"
+        android:id="@+id/trash_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="475dp"
-        android:contentDescription="@string/trashDay"
-        android:text="@string/trashDay"
+        android:text="@string/trash_day"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="157dp"
-        android:layout_height="201dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
-        android:layout_marginTop="585dp"
-        app:srcCompat="@drawable/w" />
-
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/lbs_label1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="165dp"
         android:layout_marginLeft="165dp"
         android:layout_marginTop="370dp"
-        android:text="lbs"
+        android:text="@string/lbs_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/lbs_label2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="390dp"
         android:layout_marginLeft="390dp"
         android:layout_marginTop="370dp"
-        android:text="lbs"
+        android:text="@string/lbs_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="1dp"
-        android:layout_height="240dp"
-        android:layout_marginStart="220dp"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="170dp"
-        android:background="?android:attr/listDivider" />
 
     <TextView
         android:id="@+id/day"
@@ -212,8 +208,26 @@
         android:textColor="@color/black"
         android:textSize="22sp" />
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="1dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="170dp"
+        android:background="?android:attr/listDivider" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="157dp"
+        android:layout_height="201dp"
+        android:layout_marginTop="585dp"
+        app:srcCompat="@drawable/w"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="center_horizontal"/>
+
     <ListView
-        android:id="@+id/menu_view"
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -221,32 +235,5 @@
         android:divider="@color/white"
         android:dividerHeight="2dp"
         android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/displayWeight"
-        android:layout_width="53dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center_vertical"
-        android:textColor="#8F2301"
-        android:textSize="24sp"
-        app:layout_anchor="@+id/imageView2"
-        app:layout_anchorGravity="center" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/displaycapacity"
-        android:layout_width="53dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center_vertical"
-        android:textColor="#8F2301"
-        android:textSize="24sp"
-        app:layout_anchor="@+id/imageView"
-        app:layout_anchorGravity="center" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

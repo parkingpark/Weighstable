@@ -34,14 +34,13 @@
             app:toolbarId="@+id/toolbar">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="82dp"
-                android:contentDescription="TODO"
                 app:srcCompat="@drawable/logo_white" />
 
             <ImageView
-                android:id="@+id/menu"
+                android:id="@+id/nav"
                 android:layout_width="58dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/capture" />
@@ -49,8 +48,20 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/title_calendar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#595959"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/title_calendar"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="bottom|center" />
+
     <CalendarView
-        android:id="@+id/calendarView"
+        android:id="@+id/calendar_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -68,20 +79,20 @@
         android:layout_marginTop="300dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/select_trash_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="300dp"
-        android:text="Select Trash Day:"
+        android:text="@string/select_trash_day"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <ListView
-        android:id="@+id/menu_view"
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -94,10 +105,10 @@
         android:id="@+id/logo"
         android:layout_width="157dp"
         android:layout_height="201dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
         android:layout_marginTop="585dp"
-        app:srcCompat="@drawable/w" />
+        app:srcCompat="@drawable/w"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="center_horizontal"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

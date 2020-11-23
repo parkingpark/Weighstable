@@ -62,15 +62,15 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        ImageView menu = (ImageView) findViewById(R.id.menu);
-        menu.setOnClickListener(new View.OnClickListener() {
+        ImageView nav = (ImageView) findViewById(R.id.nav);
+        nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListView menu_view = (ListView) findViewById(R.id.menu_view);
+                ListView nav_view = (ListView) findViewById(R.id.nav_view);
                 String[] pages = {"Household", "Calendar", "Data"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.listview, pages);
-                menu_view.setAdapter(pages_adapter);
-                menu_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                nav_view.setAdapter(pages_adapter);
+                nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String selected = parent.getItemAtPosition(position).toString();
@@ -83,10 +83,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-                if (menu_view.getVisibility() == View.INVISIBLE){
-                    menu_view.setVisibility(View.VISIBLE);
+                if (nav_view.getVisibility() == View.INVISIBLE){
+                    nav_view.setVisibility(View.VISIBLE);
                 } else {
-                    menu_view.setVisibility(View.INVISIBLE);
+                    nav_view.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -95,10 +95,10 @@ public class MainActivity extends AppCompatActivity {
         weight.setText(String.valueOf(val));
 */
 
-        tv = findViewById(R.id.displayWeight);
+        tv = findViewById(R.id.display_weight);
         tv.setText(String.valueOf(getIntent().getIntExtra(ARG_VALUE, 0)));
 
-        tv2 = findViewById(R.id.displaycapacity);
+        tv2 = findViewById(R.id.display_capacity);
         tv2.setText(String.valueOf(getIntent().getIntExtra(ARG_VALUE, 0)));
 
 
