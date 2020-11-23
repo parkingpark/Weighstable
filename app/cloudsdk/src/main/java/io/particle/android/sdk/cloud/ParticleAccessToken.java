@@ -3,6 +3,7 @@ package io.particle.android.sdk.cloud;
 
 import android.os.Handler;
 import android.os.Looper;
+
 import androidx.annotation.Nullable;
 
 import java.lang.ref.WeakReference;

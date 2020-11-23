@@ -6,13 +6,15 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+
 import androidx.annotation.Nullable;
-import kotlin.Deprecated;
 
 import java.io.Closeable;
 import java.io.IOException;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import kotlin.Deprecated;
 
 /**
  * Analgesic shortcuts for Android dev't.

@@ -15,17 +15,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import io.particle.android.sdk.cloud.ParticleDevice;
 import io.particle.android.sdk.cloud.exceptions.ParticleCloudException;
 import io.particle.android.sdk.utils.Async;
 import io.particle.android.sdk.utils.Toaster;
-
-import java.io.IOException;
-import java.sql.Connection;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,11 +94,6 @@ public class MainActivity extends AppCompatActivity {
          /*int val =  Sensor.getInstanceActivity().getFinalWeight();
         weight.setText(String.valueOf(val));
 */
-
-
-
-
-
 
         tv = findViewById(R.id.displayWeight);
         tv.setText(String.valueOf(getIntent().getIntExtra(ARG_VALUE, 0)));

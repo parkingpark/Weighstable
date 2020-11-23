@@ -2,6 +2,7 @@ package io.particle.android.sdk.cloud.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
