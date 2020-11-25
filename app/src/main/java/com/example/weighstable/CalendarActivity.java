@@ -1,14 +1,17 @@
 package com.example.weighstable;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
-import com.example.weighstable.household.Household;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CalendarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -35,15 +38,15 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
          //txtView = (TextView)findViewById(R.id.textView3);
          mySpinner.setOnItemSelectedListener(this);
 
-        ImageView menu = (ImageView) findViewById(R.id.menu);
-        menu.setOnClickListener(new View.OnClickListener() {
+        ImageView nav = (ImageView) findViewById(R.id.nav);
+        nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListView menu_view = (ListView) findViewById(R.id.menu_view);
+                ListView nav_view = (ListView) findViewById(R.id.nav_view);
                 String[] pages = {"Home", "Household", "Data"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(CalendarActivity.this, R.layout.listview, pages);
-                menu_view.setAdapter(pages_adapter);
-                menu_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                nav_view.setAdapter(pages_adapter);
+                nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String selected = parent.getItemAtPosition(position).toString();
@@ -56,20 +59,11 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
                         }
                     }
                 });
-                if (menu_view.getVisibility() == View.INVISIBLE){
-                    menu_view.setVisibility(View.VISIBLE);
+                if (nav_view.getVisibility() == View.INVISIBLE){
+                    nav_view.setVisibility(View.VISIBLE);
                 } else {
-                    menu_view.setVisibility(View.INVISIBLE);
+                    nav_view.setVisibility(View.INVISIBLE);
                 }
-            }
-        });
-
-
-        Button yourButton = (Button) findViewById(R.id.homeNav);
-
-        yourButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                startActivity(new Intent(CalendarActivity.this, MainActivity.class));
             }
         });
 

@@ -1,11 +1,6 @@
 package com.example.weighstable;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -16,16 +11,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.weighstable.household.Household;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import static io.particle.android.sdk.cloud.ParticleCloudSDK.*;
-import io.particle.android.sdk.cloud.ParticleCloudSDK;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -52,18 +39,18 @@ public class DataActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         Button check_server = (Button) findViewById(R.id.check_server);
-        TextView textview = (TextView) findViewById(R.id.textView);
+        TextView connection_status = (TextView) findViewById(R.id.connection_status);
 
         try {
             Class.forName(classes);
             connection = DriverManager.getConnection(url, username, password);
-            textview.setText("SUCCESS");
+            connection_status.setText("SUCCESS");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            textview.setText("ERROR");
+            connection_status.setText("ERROR");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            textview.setText("FAILURE");
+            connection_status.setText("FAILURE");
         }
 
         check_server.setOnClickListener(new View.OnClickListener() {
@@ -75,27 +62,27 @@ public class DataActivity extends AppCompatActivity {
                         statement = connection.createStatement();
                         ResultSet resultSet = statement.executeQuery("Select * from TEST_TABLE;");
                         while (resultSet.next()) {
-                            textview.setText(resultSet.getString(1));
+                            connection_status.setText(resultSet.getString(1));
                         }
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
                 }
                 else {
-                    textview.setText("Connection is null");
+                    connection_status.setText("Connection is null");
                 }
             }
         });
 
-        ImageView menu = (ImageView) findViewById(R.id.menu);
-        menu.setOnClickListener(new View.OnClickListener() {
+        ImageView nav = (ImageView) findViewById(R.id.nav);
+        nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListView menu_view = (ListView) findViewById(R.id.menu_view);
+                ListView nav_view = (ListView) findViewById(R.id.nav_view);
                 String[] pages = {"Home", "Household", "Calendar"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(DataActivity.this, R.layout.listview, pages);
-                menu_view.setAdapter(pages_adapter);
-                menu_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                nav_view.setAdapter(pages_adapter);
+                nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String selected = parent.getItemAtPosition(position).toString();
@@ -108,10 +95,11 @@ public class DataActivity extends AppCompatActivity {
                         }
                     }
                 });
-                if (menu_view.getVisibility() == View.INVISIBLE){
-                    menu_view.setVisibility(View.VISIBLE);
+                if (nav_view.getVisibility() == View.INVISIBLE){
+                    nav_view.setVisibility(View.VISIBLE);
+                    nav_view.setVisibility(View.VISIBLE);
                 } else {
-                    menu_view.setVisibility(View.INVISIBLE);
+                    nav_view.setVisibility(View.INVISIBLE);
                 }
             }
         });

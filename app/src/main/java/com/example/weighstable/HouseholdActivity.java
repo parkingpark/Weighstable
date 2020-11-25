@@ -1,7 +1,5 @@
 package com.example.weighstable;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.weighstable.household.Household;
 
@@ -39,7 +39,7 @@ public class HouseholdActivity extends AppCompatActivity {
         submit_form.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText names = (EditText) findViewById(R.id.editNames);
+                EditText names = (EditText) findViewById(R.id.edit_names);
                 String[] n = names.getText().toString().split(",");
                 household_form.setVisibility(View.GONE);
                 ListView household_view = (ListView) findViewById(R.id.household_view);
@@ -49,15 +49,15 @@ public class HouseholdActivity extends AppCompatActivity {
             }
         });
 
-        ImageView menu = (ImageView) findViewById(R.id.menu);
-        menu.setOnClickListener(new View.OnClickListener() {
+        ImageView nav = (ImageView) findViewById(R.id.nav);
+        nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListView menu_view = (ListView) findViewById(R.id.menu_view);
+                ListView nav_view = (ListView) findViewById(R.id.nav_view);
                 String[] pages = {"Home", "Calendar", "Data"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, pages);
-                menu_view.setAdapter(pages_adapter);
-                menu_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                nav_view.setAdapter(pages_adapter);
+                nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String selected = parent.getItemAtPosition(position).toString();
@@ -70,10 +70,10 @@ public class HouseholdActivity extends AppCompatActivity {
                         }
                     }
                 });
-                if (menu_view.getVisibility() == View.INVISIBLE){
-                    menu_view.setVisibility(View.VISIBLE);
+                if (nav_view.getVisibility() == View.INVISIBLE){
+                    nav_view.setVisibility(View.VISIBLE);
                 } else {
-                    menu_view.setVisibility(View.INVISIBLE);
+                    nav_view.setVisibility(View.INVISIBLE);
                 }
             }
         });
