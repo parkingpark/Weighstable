@@ -155,8 +155,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
                 public Intent buildIntent(Context ctx, Integer value, String deviceId) {
                     Intent intent = new Intent(ctx, MainActivity.class);
                     intent.putExtra(ARG_VALUE, value);

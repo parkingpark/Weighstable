@@ -25,7 +25,6 @@ import org.kaazing.gateway.client.impl.bridge.HttpRequestBridgeHandler;
 import org.kaazing.gateway.client.impl.ws.WebSocketTransportHandler;
 import org.kaazing.gateway.client.util.WrappedByteBuffer;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class HttpRequestTransportHandler extends HttpRequestHandlerAdapter {

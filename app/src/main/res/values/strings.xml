@@ -1,12 +1,22 @@
 <resources>
-    <string name="app_name">Weighstable</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="Home">home</string>
-    <string name="menu">menu</string>
-    <string name="title">title</string>
-    <string name="trashDay">trashDay</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_household">Household</string>
+    <string name="title_data">Data</string>
+    <string name="trash_day">Trash Day :</string>
+    <string name="capacity_label">Capacity</string>
+    <string name="weight_label">Weight</string>
+    <string name="capacity_limit">Capacity Limit</string>
+    <string name="weight_limit">Weight Limit</string>
+    <string name="lbs_label">lbs</string>
+    <string name="create_household">Create Household</string>
+    <string name="enter_member_names">Enter Member Names</string>
+    <string name="edit_names">Name 1, Name 2, etc</string>
+    <string name="submit">Submit</string>
+    <string name="check_server">Check Server</string>
+    <string name="connection_status">Connection Status:</string>
+    <string name="select_trash_day">Select Trash Day:</string>
 
     <string-array name="names">
         <item>Sunday</item>
@@ -17,7 +27,6 @@
         <item>Friday</item>
         <item>Saturday</item>
     </string-array>
-
 
 
 </resources>

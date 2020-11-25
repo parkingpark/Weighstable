@@ -1,7 +1,8 @@
 package io.particle.android.sdk.utils;
 
-import androidx.collection.ArrayMap;
 import android.util.Log;
+
+import androidx.collection.ArrayMap;
 
 /**
  * NOTE: this class is likely to be deprecated soon in favor of Jake Wharton's Timber:

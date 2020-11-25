@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.weighstable">
-    <uses-permission android:name="android.permission.INTERNET" />
 
 
 
@@ -11,15 +10,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Weighstable"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.Weighstable">
         <activity
-            android:name=".Login"
-            android:exported="true"
-            />
-        <activity android:name=".DataActivity"></activity>
-        <activity android:name=".HouseholdActivity" />
-
+            android:name=".DataActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HouseholdActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Sensor"
+            android:exported="true"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -33,6 +33,7 @@
             android:name=".CalendarActivity"
             android:exported="true" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
 </manifest>

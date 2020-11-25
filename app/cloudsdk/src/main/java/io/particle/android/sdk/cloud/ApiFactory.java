@@ -1,7 +1,6 @@
 package io.particle.android.sdk.cloud;
 
 import android.content.Context;
-import android.util.Base64;
 
 import androidx.annotation.StringRes;
 
@@ -16,7 +15,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import okio.ByteString;
 import retrofit.RequestInterceptor.RequestFacade;
 import retrofit.RestAdapter;
-import retrofit.RestAdapter.Log;
 import retrofit.RestAdapter.LogLevel;
 import retrofit.client.OkClient;
 import retrofit.converter.GsonConverter;
