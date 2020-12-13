@@ -1,18 +1,19 @@
 package com.example.weighstable;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
-import com.example.weighstable.household.Household;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.weighstable.household.Household;
 
 public class HouseholdActivity extends AppCompatActivity {
 
@@ -38,13 +39,42 @@ public class HouseholdActivity extends AppCompatActivity {
         submit_form.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText names = (EditText) findViewById(R.id.editNames);
+                EditText names = (EditText) findViewById(R.id.edit_names);
                 String[] n = names.getText().toString().split(",");
                 household_form.setVisibility(View.GONE);
                 ListView household_view = (ListView) findViewById(R.id.household_view);
                 ArrayAdapter<String> names_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, n);
                 household_view.setAdapter(names_adapter);
                 household_view.setVisibility(View.VISIBLE);
+            }
+        });
+
+        ImageView nav = (ImageView) findViewById(R.id.nav);
+        nav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListView nav_view = (ListView) findViewById(R.id.nav_view);
+                String[] pages = {"Home", "Calendar", "Data"};
+                ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, pages);
+                nav_view.setAdapter(pages_adapter);
+                nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selected = parent.getItemAtPosition(position).toString();
+                        if (selected.equals("Home")) {
+                            startActivity(new Intent(HouseholdActivity.this, MainActivity.class));
+                        } else if (selected.equals("Calendar")) {
+                            startActivity(new Intent(HouseholdActivity.this, CalendarActivity.class));
+                        } else if (selected.equals("Data")) {
+                            startActivity(new Intent(HouseholdActivity.this, DataActivity.class));
+                        }
+                    }
+                });
+                if (nav_view.getVisibility() == View.INVISIBLE){
+                    nav_view.setVisibility(View.VISIBLE);
+                } else {
+                    nav_view.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }

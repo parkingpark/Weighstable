@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+
+        android:layout_width="match_parent"
+        android:layout_height="103dp"
+        android:background="#FFFFFF">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="73dp"
+            android:background="#FF7700"
+            app:contentScrim="?android:attr/colorFocusedHighlight"
+
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/logo_white" />
+
+            <ImageView
+                android:id="@+id/nav"
+                android:layout_width="58dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                app:srcCompat="@drawable/capture"
+                android:focusable="true" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/title_settings"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#595959"
+        android:gravity="clip_vertical|center_horizontal"
+        android:text="@string/title_settings"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="bottom|center" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="157dp"
+        android:layout_height="201dp"
+        android:layout_marginTop="585dp"
+        app:srcCompat="@drawable/w"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="center_horizontal"/>
+
+    <ListView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:background="#595959"
+        android:divider="@color/white"
+        android:dividerHeight="2dp"
+        android:visibility="invisible" />
+
+   </androidx.coordinatorlayout.widget.CoordinatorLayout>

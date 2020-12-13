@@ -6,14 +6,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#FFFFFF">
 
     <Button
         android:id="@+id/create_household"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|center_horizontal"
-        android:text="Create Household"
+        android:layout_gravity="center"
+        android:background="#595959"
+        android:text="@string/create_household"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:backgroundTint="#595959" />
 
     <com.google.android.material.appbar.AppBarLayout
@@ -33,13 +36,13 @@
             app:toolbarId="@+id/toolbar">
 
             <ImageView
-                android:id="@+id/title"
+                android:id="@+id/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="82dp"
                 app:srcCompat="@drawable/logo_white" />
 
             <ImageView
-                android:id="@+id/menu"
+                android:id="@+id/nav"
                 android:layout_width="58dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/capture" />
@@ -48,12 +51,12 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/home"
+        android:id="@+id/title_household"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="#595959"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Household"
+        android:text="@string/title_household"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"
         app:layout_anchor="@+id/appbar"
@@ -75,27 +78,28 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/enter_member_names"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enter Member Names"
+                android:text="@string/enter_member_names"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editNames"
+                android:id="@+id/edit_names"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name 1,Name 2,etc"
+                android:text="@string/edit_names"
                 android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/submit_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Submit"
+                android:text="@string/submit"
+                android:textColor="@color/white"
                 app:backgroundTint="#595959" />
         </LinearLayout>
     </ScrollView>
@@ -109,6 +113,25 @@
         android:divider="@color/white"
         android:dividerHeight="2dp"
         android:visibility="invisible" />
+
+    <ListView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:background="#595959"
+        android:divider="@color/white"
+        android:dividerHeight="2dp"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="157dp"
+        android:layout_height="201dp"
+        android:layout_marginTop="585dp"
+        app:srcCompat="@drawable/w"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="center_horizontal"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
