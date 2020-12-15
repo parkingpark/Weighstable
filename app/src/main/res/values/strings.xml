@@ -10,6 +10,7 @@
     <string name="capacity_limit">Capacity Limit</string>
     <string name="weight_limit">Weight Limit</string>
     <string name="lbs_label">lbs</string>
+    <string name="percent_label">%</string>
     <string name="create_household">Create Household</string>
     <string name="enter_member_names">Enter Member Names</string>
     <string name="edit_names">Name 1, Name 2, etc</string>
