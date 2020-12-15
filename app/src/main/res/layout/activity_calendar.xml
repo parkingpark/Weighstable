@@ -34,13 +34,7 @@
             app:toolbarId="@+id/toolbar">
 
             <ImageView
-                android:id="@+id/app_name"
-                android:layout_width="wrap_content"
-                android:layout_height="82dp"
-                app:srcCompat="@drawable/logo_white" />
-
-            <ImageView
-                android:id="@+id/nav"
+                android:id="@+id/imageView4"
                 android:layout_width="58dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/capture" />
@@ -48,20 +42,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/title_calendar"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="#595959"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/title_calendar"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#FFFFFF"
-        app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="bottom|center" />
-
     <CalendarView
-        android:id="@+id/calendar_view"
+        android:id="@+id/calendarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -74,41 +56,39 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="300dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="400dp" />
 
     <TextView
-        android:id="@+id/select_trash_day"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="300dp"
-        android:text="@string/select_trash_day"
+        android:text="Select Trash Day"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <ListView
-        android:id="@+id/nav_view"
+
+    <Button
+        android:id="@+id/dayButton"
         android:layout_width="wrap_content"
+        android:layout_marginStart="310dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="574dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:background="#595959"
-        android:divider="@color/white"
-        android:dividerHeight="2dp"
-        android:visibility="invisible" />
+        android:text="Submit" />
 
     <ImageView
-        android:id="@+id/logo"
-        android:layout_width="157dp"
-        android:layout_height="201dp"
-        android:layout_marginTop="585dp"
-        app:srcCompat="@drawable/w"
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="82dp"
+        android:contentDescription="TODO"
         app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="center_horizontal"/>
+        app:layout_anchorGravity="center"
+        app:srcCompat="@drawable/logo_white" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
