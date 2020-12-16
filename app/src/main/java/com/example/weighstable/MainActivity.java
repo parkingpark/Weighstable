@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-                if (nav_view.getVisibility() == View.INVISIBLE){
+                if (nav_view.getVisibility() == View.INVISIBLE) {
                     nav_view.setVisibility(View.VISIBLE);
                 } else {
                     nav_view.setVisibility(View.INVISIBLE);
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                         Object capacity;
                         try {
                             capacity = device.getVariable("capacity");
-                            capacityData =  capacity;
+                            capacityData = capacity;
                         } catch (ParticleDevice.VariableDoesNotExistException e) {
                             Toaster.l(MainActivity.this, e.getMessage());
                             capacity = -1;
