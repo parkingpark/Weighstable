@@ -229,8 +229,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="550dp"
+        android:background="#FA0000"
+        android:backgroundTint="#FF0000"
+        android:foregroundTint="#FF0000"
+        android:onClick="report"
         android:text="Report"
-        android:onClick="report"/>
+        app:iconTint="#FF0000" />
 
     <EditText
         android:id="@+id/reportName"

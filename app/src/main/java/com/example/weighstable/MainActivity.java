@@ -42,6 +42,9 @@ import io.particle.android.sdk.cloud.ParticleDevice;
 import io.particle.android.sdk.cloud.exceptions.ParticleCloudException;
 import io.particle.android.sdk.utils.Async;
 import io.particle.android.sdk.utils.Toaster;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String ARG_VALUE = "ARG_VALUE";
     private static final String ARG_DEVICEID = "e00fce6879ba0853f09d4af2";
 
+    private static final SimpleDateFormat dateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+
     Button report;
+    FirebaseAuth fAuth;
 
     private TextView tv;
     private TextView tv2;
@@ -85,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         reportName = findViewById(R.id.reportName);
 
         db = FirebaseFirestore.getInstance();
+        fAuth = FirebaseAuth.getInstance();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -196,35 +203,35 @@ public class MainActivity extends AppCompatActivity {
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String nameData = reportName.getText().toString();
                 String val = weightData.toString();
                 double wD = Double.valueOf(val);
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                String timeData = dateTime.format(timestamp);
 
+                DocumentReference documentReference = db.collection("takeout").document();
+                Map<String, Object> input = new HashMap<>();
 
+                input.put(KEY_USER, nameData);
+                input.put(KEY_WEIGHT, wD);
+                //input.put(KEY_WEIGHT, 12.0);
+                input.put("timestamp", timeData);
 
-//
-//                DocumentReference documentReference = db.collection("takeout").document();
-//                Map<String, Object> input = new HashMap<>();
-//                input.put(KEY_USER, nameData);
-//                //input.put(KEY_WEIGHT, wD);
-//                input.put(KEY_WEIGHT, 12.0);
-//
-//                documentReference.set(input)
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                Toast.makeText(MainActivity.this, "Input Saved", Toast.LENGTH_SHORT).show();
-//                                Log.d(TAG, "reeeeeeeee");
-//                            }
-//                        })
-//                        .addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-//                                Log.d(TAG, e.toString());
-//                            }
-//                        });
+                documentReference.set(input)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(MainActivity.this, "Input Saved", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "Success");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, e.toString());
+                            }
+                        });
             }
         });
     }
