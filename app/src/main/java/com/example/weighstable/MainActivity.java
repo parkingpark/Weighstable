@@ -3,6 +3,7 @@ package com.example.weighstable;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -24,11 +25,8 @@ import java.sql.Connection;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,7 +43,6 @@ import io.particle.android.sdk.utils.Toaster;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,8 +74,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv;
     private TextView tv2;
 
+    boolean login;
     Object weightData = 0;
     Object capacityData = 0;
+    int maxCapacity = 53;
+    int minCapacity = 0;
+    ParticleDevice device;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,10 +87,13 @@ public class MainActivity extends AppCompatActivity {
         //enabling android cloud apk for particle
 
         ParticleCloudSDK.init(this);
+        final ParticleDevice[] device = new ParticleDevice[1];
 
         setContentView(R.layout.activity_main);//textView = findViewById(R.id.textView);
         report = findViewById(R.id.iTookOut);
         reportName = findViewById(R.id.reportName);
+
+        login = false;
 
         db = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -130,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         weight.setText(String.valueOf(val));
 */
 
+
         tv = findViewById(R.id.display_weight);
         tv.setText(String.valueOf(getIntent().getIntExtra(ARG_VALUE, 0)));
 
@@ -140,22 +145,58 @@ public class MainActivity extends AppCompatActivity {
         //findViewById(R.id.refresh_button).setOnClickListener(v -> {
         //...
         // Do network work on background thread
+//        Timer login_timer = new Timer();
+//        TimerTask login_pro = new TimerTask() {
+//            @Override
+//            public void run() {
+//                Async.executeAsync(ParticleCloudSDK.getCloud(), new Async.ApiWork<ParticleCloud, Object>() {
+//                    @Override
+//                    public Object callApi(@NonNull ParticleCloud ParticleCloud) throws ParticleCloudException, IOException {
+////                        if( login = false ){
+//                        ParticleCloud.logIn("ccarpenter6000@gmail.com", "4155Password!");
+//
+//                        device[0] = ParticleCloud.getDevice("e00fce6879ba0853f09d4af2");
+////                        }
+////                        login_timer.cancel();
+////                        login_timer.purge();
+//                        return null;
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(Object o) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(ParticleCloudException exception) {
+//
+//                    }
+//                });
+//
+//            }
+
+
+//        };login_timer.schedule(login_pro, 0, 1000);
+
+
         Timer sensor_timer = new Timer();
         TimerTask task_process = new TimerTask() {
             @Override
             public void run() {
-
+                final ParticleDevice[] device = new ParticleDevice[1];
 
                 Async.executeAsync(ParticleCloudSDK.getCloud(), new Async.ApiWork<ParticleCloud, Object>() {
                     @Override
                     public Object callApi(@NonNull ParticleCloud ParticleCloud) throws ParticleCloudException, IOException {
-                        ParticleCloud.logIn("ccarpenter6000@gmail.com", "4155Password!");
-
-                        ParticleDevice device = ParticleCloud.getDevice("e00fce6879ba0853f09d4af2");
+////                        if( login = false ){
+//                            ParticleCloud.logIn("ccarpenter6000@gmail.com", "4155Password!");
+//
+                        device[0] = ParticleCloud.getDevice("e00fce6879ba0853f09d4af2");
+////                        }
                         //get weight
                         Object weight;
                         try {
-                            weight = device.getVariable("weight");
+                            weight = device[0].getVariable("weight");
                             weightData = weight;
                         } catch (ParticleDevice.VariableDoesNotExistException e) {
                             Toaster.l(MainActivity.this, e.getMessage());
@@ -165,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                         //get capacity
                         Object capacity;
                         try {
-                            capacity = device.getVariable("capacity");
+                            capacity = device[0].getVariable("capacity");
                             capacityData = capacity;
                         } catch (ParticleDevice.VariableDoesNotExistException e) {
                             Toaster.l(MainActivity.this, e.getMessage());
@@ -177,8 +218,13 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onSuccess(@NonNull Object i) { // this goes on the main thread
+                        double capPer = ((maxCapacity - (Double) capacityData) / maxCapacity) * 100;
+                        capPer = (int) capPer;
+                        String cap = String.valueOf(capPer);
                         tv.setText(i.toString());
-                        tv2.setText(capacityData.toString());
+                        tv2.setText(cap + "%");
+
+//                        tv2.setText(capacityData.toString());
 
                     }
 
@@ -235,5 +281,34 @@ public class MainActivity extends AppCompatActivity {
                         });
             }
         });
+    }
+
+    private void MySyncTasks() {
+
+
+        Async.executeAsync(ParticleCloudSDK.getCloud(), new Async.ApiWork<ParticleCloud, Object>() {
+            @Override
+            public Object callApi(@NonNull ParticleCloud ParticleCloud) throws ParticleCloudException, IOException {
+                ParticleCloudSDK.getCloud().logIn("ccarpenter6000@gmail.com", "4155Password!");
+
+                ParticleDevice device = ParticleCloud.getDevice("e00fce6879ba0853f09d4af2");
+                return -1;
+
+            }
+
+            @Override
+            public void onSuccess(Object value) {
+                Toaster.s(MainActivity.this, "Logged in");
+                login = true;
+            }
+
+            @Override
+            public void onFailure(ParticleCloudException e) {
+                Toaster.l(MainActivity.this, "Wrong credentials or no internet connectivity, please try again");
+                login = true;
+            }
+        });
+
+
     }
 }
