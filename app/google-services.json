@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "417223082230",
     "project_id": "weighstablelogin",
-    "storage_bucket": "weighstablelogin.appspot.com"
+    "storage_bucket": "weighstablelogin.appspot.com",
     "project_number": "1040626400611",
     "firebase_url": "https://weighstable.firebaseio.com",
     "project_id": "weighstable",
@@ -26,8 +26,8 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAth3JXuqW9voONtsyjB6DVNceM-T3L6co"
-          "current_key": "AIzaSyBRe6p1Gd60OQOMzu0Gq77eXojOyVKPgF8"
+          "current_key": "AIzaSyAth3JXuqW9voONtsyjB6DVNceM-T3L6co",
+          "current_key": "AIzaSyBRe6p1Gd60OQOMzu0Gq77eXojOyVKPgF8",
         }
       ],
       "services": {
