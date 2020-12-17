@@ -52,6 +52,7 @@ public class HouseholdActivity extends AppCompatActivity {
         submit_form.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                household = new Household();
                 EditText names = (EditText) findViewById(R.id.edit_names);
                 String[] n = names.getText().toString().split(",");
                 household.setPeople(n);
