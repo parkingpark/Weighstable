@@ -49,6 +49,29 @@
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="bottom|center" />
 
+    <Button
+        android:id="@+id/check_server"
+        android:layout_width="248dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="212dp"
+        android:text="@string/check_server"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:backgroundTint="#595959"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/connection_status"
+        android:layout_width="248dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="285dp"
+        android:gravity="center"
+        android:text="@string/connection_status"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="center_horizontal" />
+
     <ListView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

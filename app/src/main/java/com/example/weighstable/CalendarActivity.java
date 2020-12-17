@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.*;
 
 import com.example.weighstable.household.Household;
+import com.example.weighstable.util.DeviceReadWrite;
 
+import java.io.IOException;
 import java.util.Calendar;
 
 public class CalendarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -20,12 +22,15 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
     private Spinner mySpinner;
     private String valueFromSpinner;
     private String trash;
+    private Household household;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
+        checkForHousehold();
 
         mySpinner = findViewById(R.id.spinner);
         String[] days = getResources().getStringArray(R.array.names);
@@ -112,5 +117,27 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    protected void checkForHousehold() {
+        try {
+            household = DeviceReadWrite.readHousehold(getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (household != null) {
+            try {
+                DeviceReadWrite.writeHousehold(household, getApplicationContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -1,9 +1,6 @@
 package com.example.weighstable.util;
-
 import java.io.*;
-
 import android.content.Context;
-
 import com.example.weighstable.household.Household;
 
 public class DeviceReadWrite {
