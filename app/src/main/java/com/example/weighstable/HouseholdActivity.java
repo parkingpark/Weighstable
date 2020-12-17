@@ -56,7 +56,7 @@ public class HouseholdActivity extends AppCompatActivity {
                 String[] n = names.getText().toString().split(",");
                 household.setPeople(n);
                 household_form.setVisibility(View.GONE);
-                ArrayAdapter<String> names_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, n);
+                ArrayAdapter<String> names_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, household.getPeople());
                 household_view.setAdapter(names_adapter);
                 household_view.setVisibility(View.VISIBLE);
             }
