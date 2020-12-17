@@ -5,27 +5,36 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.weighstable.household.Household;
-import com.example.weighstable.util.DeviceReadWrite;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.lang.*;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.cloud.ParticleCloudSDK;
@@ -46,18 +55,23 @@ public class MainActivity extends AppCompatActivity {
     private Connection connection = null;
 
     private TextView weight;
-
+    
+    private static final String TAG = "MainActivity";
+    private static final String KEY_USER = "user";
+    private static final String KEY_WEIGHT = "weight";
+    private EditText reportName;
+    private FirebaseFirestore db;
 
     private static final String ARG_VALUE = "ARG_VALUE";
     private static final String ARG_DEVICEID = "e00fce6879ba0853f09d4af2";
+
+    Button report;
 
     private TextView tv;
     private TextView tv2;
 
     Object weightData = 0;
     Object capacityData = 0;
-
-    private Household household;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +81,13 @@ public class MainActivity extends AppCompatActivity {
         ParticleCloudSDK.init(this);
 
         setContentView(R.layout.activity_main);//textView = findViewById(R.id.textView);
+        report = findViewById(R.id.iTookOut);
+        reportName = findViewById(R.id.reportName);
+
+        db = FirebaseFirestore.getInstance();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        checkForHousehold();
 
         ImageView nav = (ImageView) findViewById(R.id.nav);
         nav.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +119,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
          /*int val =  Sensor.getInstanceActivity().getFinalWeight();
-        weight.setText(String.valueOf(val)); */
+        weight.setText(String.valueOf(val));
+*/
 
         tv = findViewById(R.id.display_weight);
         tv.setText(String.valueOf(getIntent().getIntExtra(ARG_VALUE, 0)));
@@ -111,59 +128,6 @@ public class MainActivity extends AppCompatActivity {
         tv2 = findViewById(R.id.display_capacity);
         tv2.setText(String.valueOf(getIntent().getIntExtra(ARG_VALUE, 0)));
 
-        EditText capLimit = (EditText) findViewById(R.id.capacity_input);
-        EditText weightLimit = (EditText) findViewById(R.id.weight_input);
-        TextWatcher capWatch = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                try {
-                    int cLimit = Integer.parseInt(capLimit.getText().toString());
-                    household.setcLimit(cLimit);
-                } catch (NumberFormatException e) {
-
-                }
-            }
-        };
-
-        TextWatcher weightWatch = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                try {
-                    int wLimit = Integer.parseInt(weightLimit.getText().toString());
-                    household.setwLimit(wLimit);
-                } catch (NumberFormatException e) {
-
-                }
-            }
-        };
-
-        if (household != null) {
-            weightLimit.setText(String.valueOf(household.getwLimit()));
-            capLimit.setText(String.valueOf(household.getcLimit()));
-        }
-
-        capLimit.addTextChangedListener(capWatch);
-        weightLimit.addTextChangedListener(weightWatch);
 
         //findViewById(R.id.refresh_button).setOnClickListener(v -> {
         //...
@@ -228,28 +192,40 @@ public class MainActivity extends AppCompatActivity {
         };
         sensor_timer.schedule(task_process, 0, 1000);
 
-    }
 
-    protected void checkForHousehold() {
-        try {
-            household = DeviceReadWrite.readHousehold(getApplicationContext());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (household != null) {
-            try {
-                DeviceReadWrite.writeHousehold(household, getApplicationContext());
-            } catch (IOException e) {
-                e.printStackTrace();
+                String nameData = reportName.getText().toString();
+                String val = weightData.toString();
+                double wD = Double.valueOf(val);
+
+
+
+//
+//                DocumentReference documentReference = db.collection("takeout").document();
+//                Map<String, Object> input = new HashMap<>();
+//                input.put(KEY_USER, nameData);
+//                //input.put(KEY_WEIGHT, wD);
+//                input.put(KEY_WEIGHT, 12.0);
+//
+//                documentReference.set(input)
+//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                Toast.makeText(MainActivity.this, "Input Saved", Toast.LENGTH_SHORT).show();
+//                                Log.d(TAG, "reeeeeeeee");
+//                            }
+//                        })
+//                        .addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+//                                Log.d(TAG, e.toString());
+//                            }
+//                        });
             }
-        }
+        });
     }
-
 }

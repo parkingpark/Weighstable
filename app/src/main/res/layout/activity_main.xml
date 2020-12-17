@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <EditText
+        android:id="@+id/person2"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="550dp"
+        android:textColor="@color/black" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
@@ -205,15 +213,6 @@
         android:layout_marginTop="170dp"
         android:background="?android:attr/listDivider" />
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="157dp"
-        android:layout_height="201dp"
-        android:layout_marginTop="585dp"
-        app:srcCompat="@drawable/w"
-        app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="center_horizontal"/>
-
     <ListView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -223,5 +222,23 @@
         android:divider="@color/white"
         android:dividerHeight="2dp"
         android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/iTookOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="550dp"
+        android:text="Report"
+        android:onClick="report"/>
+
+    <EditText
+        android:id="@+id/reportName"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="550dp"
+        android:autofillHints="name"
+        android:textColor="@color/black" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -86,10 +86,58 @@
         android:id="@+id/logo"
         android:layout_width="157dp"
         android:layout_height="201dp"
-        android:layout_marginTop="585dp"
+        android:layout_marginTop="500dp"
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="center_horizontal"
         app:srcCompat="@drawable/w" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="185dp"
+        android:text="Weight in trash to date:" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="250dp"
+        android:text="Weight in trash last 30 days:" />
+
+    <TextView
+        android:id="@+id/totalTrashWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="275dp"
+        android:layout_marginTop="185dp"
+        android:text="null" />
+
+    <TextView
+        android:id="@+id/trashWeight30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="275dp"
+        android:layout_marginTop="250dp"
+        android:text="null" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="315dp"
+        android:text="Who's turn is it next?:" />
+
+    <TextView
+        android:id="@+id/whosTurn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="275dp"
+        android:layout_marginTop="315dp"
+        android:text="null" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
