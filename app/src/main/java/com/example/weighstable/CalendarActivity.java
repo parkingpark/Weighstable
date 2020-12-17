@@ -79,8 +79,34 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
-
-
+        ImageView nav = (ImageView) findViewById(R.id.nav);
+        nav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListView nav_view = (ListView) findViewById(R.id.nav_view);
+                String[] pages = {"Home", "Calendar", "Data"};
+                ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(CalendarActivity.this, R.layout.listview, pages);
+                nav_view.setAdapter(pages_adapter);
+                nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selected = parent.getItemAtPosition(position).toString();
+                        if (selected.equals("Home")) {
+                            startActivity(new Intent(CalendarActivity.this, MainActivity.class));
+                        } else if (selected.equals("Household")) {
+                            startActivity(new Intent(CalendarActivity.this, HouseholdActivity.class));
+                        } else if (selected.equals("Data")) {
+                            startActivity(new Intent(CalendarActivity.this, DataActivity.class));
+                        }
+                    }
+                });
+                if (nav_view.getVisibility() == View.INVISIBLE){
+                    nav_view.setVisibility(View.VISIBLE);
+                } else {
+                    nav_view.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
     }
 
 
