@@ -14,6 +14,9 @@ import android.widget.ScrollView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.weighstable.household.Household;
+import com.example.weighstable.util.DeviceReadWrite;
+
+import java.io.IOException;
 
 public class HouseholdActivity extends AppCompatActivity {
 
@@ -25,7 +28,17 @@ public class HouseholdActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_household);
+
+        checkForHousehold();
+
         create_house = (Button) findViewById(R.id.create_household);
+        ListView household_view = (ListView) findViewById(R.id.household_view);
+        if (household != null && household.getPeople() != null) {
+            create_house.setVisibility(View.INVISIBLE);
+            ArrayAdapter<String> names_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, household.getPeople());
+            household_view.setAdapter(names_adapter);
+            household_view.setVisibility(View.VISIBLE);
+        }
         household_form = (ScrollView) findViewById(R.id.household_form);
 
         create_house.setOnClickListener(new View.OnClickListener() {
@@ -41,8 +54,8 @@ public class HouseholdActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText names = (EditText) findViewById(R.id.edit_names);
                 String[] n = names.getText().toString().split(",");
+                household.setPeople(n);
                 household_form.setVisibility(View.GONE);
-                ListView household_view = (ListView) findViewById(R.id.household_view);
                 ArrayAdapter<String> names_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, n);
                 household_view.setAdapter(names_adapter);
                 household_view.setVisibility(View.VISIBLE);
@@ -77,5 +90,27 @@ public class HouseholdActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    protected void checkForHousehold() {
+        try {
+            household = DeviceReadWrite.readHousehold(getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (household != null) {
+            try {
+                DeviceReadWrite.writeHousehold(household, getApplicationContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
