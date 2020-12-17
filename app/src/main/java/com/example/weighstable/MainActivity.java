@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,10 +18,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.weighstable.household.Household;
+import com.example.weighstable.util.DeviceReadWrite;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.lang.*;
 
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.cloud.ParticleCloudSDK;
@@ -50,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     Object weightData = 0;
     Object capacityData = 0;
 
+    private Household household;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        checkForHousehold();
 
         ImageView nav = (ImageView) findViewById(R.id.nav);
         nav.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-                if (nav_view.getVisibility() == View.INVISIBLE){
+                if (nav_view.getVisibility() == View.INVISIBLE) {
                     nav_view.setVisibility(View.VISIBLE);
                 } else {
                     nav_view.setVisibility(View.INVISIBLE);
@@ -92,8 +103,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
          /*int val =  Sensor.getInstanceActivity().getFinalWeight();
-        weight.setText(String.valueOf(val));
-*/
+        weight.setText(String.valueOf(val)); */
 
         tv = findViewById(R.id.display_weight);
         tv.setText(String.valueOf(getIntent().getIntExtra(ARG_VALUE, 0)));
@@ -101,6 +111,59 @@ public class MainActivity extends AppCompatActivity {
         tv2 = findViewById(R.id.display_capacity);
         tv2.setText(String.valueOf(getIntent().getIntExtra(ARG_VALUE, 0)));
 
+        EditText capLimit = (EditText) findViewById(R.id.capacity_input);
+        EditText weightLimit = (EditText) findViewById(R.id.weight_input);
+        TextWatcher capWatch = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    int cLimit = Integer.parseInt(capLimit.getText().toString());
+                    household.setcLimit(cLimit);
+                } catch (NumberFormatException e) {
+
+                }
+            }
+        };
+
+        TextWatcher weightWatch = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    int wLimit = Integer.parseInt(weightLimit.getText().toString());
+                    household.setwLimit(wLimit);
+                } catch (NumberFormatException e) {
+
+                }
+            }
+        };
+
+        if (household != null) {
+            weightLimit.setText(String.valueOf(household.getwLimit()));
+            capLimit.setText(String.valueOf(household.getcLimit()));
+        }
+
+        capLimit.addTextChangedListener(capWatch);
+        weightLimit.addTextChangedListener(weightWatch);
 
         //findViewById(R.id.refresh_button).setOnClickListener(v -> {
         //...
@@ -131,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
                         Object capacity;
                         try {
                             capacity = device.getVariable("capacity");
-                            capacityData =  capacity;
+                            capacityData = capacity;
                         } catch (ParticleDevice.VariableDoesNotExistException e) {
                             Toaster.l(MainActivity.this, e.getMessage());
                             capacity = -1;
@@ -165,6 +228,28 @@ public class MainActivity extends AppCompatActivity {
         };
         sensor_timer.schedule(task_process, 0, 1000);
 
+    }
+
+    protected void checkForHousehold() {
+        try {
+            household = DeviceReadWrite.readHousehold(getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (household != null) {
+            try {
+                DeviceReadWrite.writeHousehold(household, getApplicationContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
