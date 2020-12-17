@@ -42,6 +42,7 @@ import io.particle.android.sdk.cloud.ParticleDevice;
 import io.particle.android.sdk.cloud.exceptions.ParticleCloudException;
 import io.particle.android.sdk.utils.Async;
 import io.particle.android.sdk.utils.Toaster;
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private Connection connection = null;
 
     private TextView weight;
-    
+
     private static final String TAG = "MainActivity";
     private static final String KEY_USER = "user";
     private static final String KEY_WEIGHT = "weight";
