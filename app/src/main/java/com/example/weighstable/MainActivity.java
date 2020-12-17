@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private Connection connection = null;
 
     private TextView weight;
-    
+
     private static final String TAG = "MainActivity";
     private static final String KEY_USER = "user";
     private static final String KEY_WEIGHT = "weight";
@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String ARG_DEVICEID = "e00fce6879ba0853f09d4af2";
 
     Button report;
+    FirebaseAuth fAuth;
+
 
     private TextView tv;
     private TextView tv2;
@@ -202,29 +204,27 @@ public class MainActivity extends AppCompatActivity {
                 double wD = Double.valueOf(val);
 
 
+                DocumentReference documentReference = db.collection("takeout").document();
+                Map<String, Object> input = new HashMap<>();
+                input.put(KEY_USER, nameData);
+                //input.put(KEY_WEIGHT, wD);
+                input.put(KEY_WEIGHT, 12.0);
 
-//
-//                DocumentReference documentReference = db.collection("takeout").document();
-//                Map<String, Object> input = new HashMap<>();
-//                input.put(KEY_USER, nameData);
-//                //input.put(KEY_WEIGHT, wD);
-//                input.put(KEY_WEIGHT, 12.0);
-//
-//                documentReference.set(input)
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                Toast.makeText(MainActivity.this, "Input Saved", Toast.LENGTH_SHORT).show();
-//                                Log.d(TAG, "reeeeeeeee");
-//                            }
-//                        })
-//                        .addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-//                                Log.d(TAG, e.toString());
-//                            }
-//                        });
+                documentReference.set(input)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(MainActivity.this, "Input Saved", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "reeeeeeeee");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, e.toString());
+                            }
+                        });
             }
         });
     }

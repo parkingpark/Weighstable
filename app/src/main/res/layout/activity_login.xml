@@ -44,10 +44,18 @@
 
     <Button
         android:id="@+id/loginButton"
+        style="@style/SparkButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"
+        android:background="#CD1313"
+        android:backgroundTint="#D31111"
+        android:backgroundTintMode="src_over"
         android:text="Login"
+        android:textColor="#FFFFFF"
+        app:icon="@color/orange"
+        app:iconTint="#2196F3"
+        app:iconTintMode="src_in"
         app:layout_constraintBottom_toTopOf="@+id/sendToRegister"
         app:layout_constraintEnd_toEndOf="@+id/sendToRegister"
         app:layout_constraintStart_toStartOf="@+id/sendToRegister" />
