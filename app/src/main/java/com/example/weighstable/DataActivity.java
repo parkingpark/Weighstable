@@ -55,6 +55,7 @@ public class DataActivity extends AppCompatActivity {
     private static final String TAG = "DataActivity";
     private EditText reportName;
     private FirebaseFirestore db;
+    private int check = 0;
     private DocumentReference reportRef;
     CollectionReference takeoutRef;
     private ArrayList<TakeoutData> dump = new ArrayList<>();
@@ -114,49 +115,51 @@ public class DataActivity extends AppCompatActivity {
 
 
     public void onRefreshClick(View view) {
-        takeoutRef.get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d(TAG, document.getId() + " => " + document.getData());
-                            TakeoutData t = document.toObject(TakeoutData.class);
-                            dump.add(t);
+        if (check == 0) {
+            takeoutRef.get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                TakeoutData t = document.toObject(TakeoutData.class);
+                                dump.add(t);
+                            }
+                            adapter.clear();
+                            adapter.addAll(dump);
                         }
-                        adapter.clear();
-                        adapter.addAll(dump);
-                    }
 
-                });
+                    });
+            check = 1;
+        }
 
         double totalWeight = 0.0;
         double weight30 = 0.0;
 
-        if(totalWeight == 0.0) {
+        if (totalWeight == 0.0) {
 
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String timeData = dateTime.format(timestamp);
-        String[] split = timeData.split("\\.");
-        Log.d(TAG, "??????????????????????" + split[0] + "!!!!!!!!!!!!!!!" + split[1]);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            String timeData = dateTime.format(timestamp);
+            String[] split = timeData.split("\\.");
+            Log.d(TAG, "??????????????????????" + split[0] + "!!!!!!!!!!!!!!!" + split[1]);
 
-        for (TakeoutData doota : dump) {
-            weight30 = 0.0;
-            totalWeight = 0.0;
-            String currentTimeData = dateTime.format(timestamp);
-            String[] currentSplit = currentTimeData.split("\\.");
-            Log.d(TAG, "??????????????????????" + currentSplit[0] + "!!!!!!!!!!!!!!!" + currentSplit[1]);
-            totalWeight += doota.getWeight();
-            if(split[0].equals(currentSplit[0])) {
-                if(split[1].equals(currentSplit[1])){
-                    weight30 += doota.getWeight();
+            for (TakeoutData doota : dump) {
+                String currentTimeData = dateTime.format(timestamp);
+                String[] currentSplit = currentTimeData.split("\\.");
+                Log.d(TAG, "??????????????????????" + currentSplit[0] + "!!!!!!!!!!!!!!!" + currentSplit[1]);
+                totalWeight += doota.getWeight();
+                if (split[0].equals(currentSplit[0])) {
+                    if (split[1].equals(currentSplit[1])) {
+                        weight30 += doota.getWeight();
+                    }
                 }
             }
-        }
-
 
 
             totalTrashWeight.setText(String.valueOf(Double.toString(totalWeight) + "lbs"));
             trashWeight30.setText(String.valueOf(Double.toString(weight30) + "lbs"));
+            weight30 = 0.0;
+            totalWeight = 0.0;
         }
 
     }
