@@ -1,18 +1,14 @@
 {
   "project_info": {
     "project_number": "417223082230",
+    "firebase_url": "https://weighstablelogin-default-rtdb.firebaseio.com",
     "project_id": "weighstablelogin",
-    "storage_bucket": "weighstablelogin.appspot.com",
-    "project_number": "1040626400611",
-    "firebase_url": "https://weighstable.firebaseio.com",
-    "project_id": "weighstable",
-    "storage_bucket": "weighstable.appspot.com"
+    "storage_bucket": "weighstablelogin.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:417223082230:android:e5292f1d5d3809bd60ecd7",
-        "mobilesdk_app_id": "1:1040626400611:android:1861ba3aa1a566a544e756",
         "android_client_info": {
           "package_name": "com.example.weighstable"
         }
@@ -20,14 +16,12 @@
       "oauth_client": [
         {
           "client_id": "417223082230-slgplfkisvjnbs2teituabu8hmshekco.apps.googleusercontent.com",
-          "client_id": "1040626400611-o2s5pm9vpdangidufr5e4vgkd355dshq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAth3JXuqW9voONtsyjB6DVNceM-T3L6co",
-          "current_key": "AIzaSyBRe6p1Gd60OQOMzu0Gq77eXojOyVKPgF8"
+          "current_key": "AIzaSyAth3JXuqW9voONtsyjB6DVNceM-T3L6co"
         }
       ],
       "services": {
@@ -35,7 +29,6 @@
           "other_platform_oauth_client": [
             {
               "client_id": "417223082230-slgplfkisvjnbs2teituabu8hmshekco.apps.googleusercontent.com",
-              "client_id": "1040626400611-o2s5pm9vpdangidufr5e4vgkd355dshq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

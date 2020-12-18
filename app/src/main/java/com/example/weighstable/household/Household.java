@@ -4,6 +4,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Date;
+import java.lang.Math;
 
 public class Household implements Serializable {
     String[] people;
@@ -42,7 +43,23 @@ public class Household implements Serializable {
     }
 
     public void setPeople(String[] p) {
+        for (int i=0; i < p.length; i++) {
+            int pos = (int) (Math.random() * p.length);
+            String temp = p[pos];
+            p[pos] = p[i];
+            p[i] = temp;
+        }
         this.people = p;
+    }
+
+    public void rotate() {
+        if (people != null) {
+            String temp = people[0];
+            for (int i=1; i < people.length + 1; i++) {
+                people[i - 1] = people[i];
+            }
+            people[people.length - 1] = temp;
+        }
     }
 
     public void setTrashDay(String d) {
