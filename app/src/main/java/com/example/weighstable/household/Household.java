@@ -9,7 +9,7 @@ public class Household implements Serializable {
     String[] people;
     int wLimit;
     int cLimit;
-    Date trashDay;
+    String trashDay;
 
     public Household() {
         people = null;
@@ -18,7 +18,7 @@ public class Household implements Serializable {
         trashDay = null;
     }
 
-    public Household(String[] people, int wLimit, int cLimit, Date trashDay) {
+    public Household(String[] people, int wLimit, int cLimit, String trashDay) {
         this.people = people;
         this.wLimit = wLimit;
         this.cLimit = cLimit;
@@ -45,7 +45,7 @@ public class Household implements Serializable {
         this.people = p;
     }
 
-    public void setTrashDay(Date d) {
+    public void setTrashDay(String d) {
         this.trashDay = d;
     }
 
@@ -53,7 +53,7 @@ public class Household implements Serializable {
         return people;
     }
 
-    public Date getTrashDay() {
+    public String getTrashDay() {
         return trashDay;
     }
 
@@ -68,6 +68,6 @@ public class Household implements Serializable {
         people = (String[]) stream.readObject();
         wLimit = stream.readInt();
         cLimit = stream.readInt();
-        trashDay = (Date) stream.readObject();
+        trashDay = (String) stream.readObject();
     }
 }

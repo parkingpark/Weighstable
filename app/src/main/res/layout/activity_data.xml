@@ -10,12 +10,12 @@
         android:id="@+id/appbar"
 
         android:layout_width="match_parent"
-        android:layout_height="118dp"
+        android:layout_height="103dp"
         android:background="#FFFFFF">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="73dp"
             android:background="#FF7700"
             app:contentScrim="?android:attr/colorFocusedHighlight"
 
@@ -49,28 +49,63 @@
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="bottom|center" />
 
-    <Button
-        android:id="@+id/check_server"
-        android:layout_width="248dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="212dp"
-        android:text="@string/check_server"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:backgroundTint="#595959"
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="130dp"
+        android:layout_height="179dp"
+        android:layout_marginTop="590dp"
+        app:srcCompat="@drawable/w"
         app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="center_horizontal" />
+        app:layout_anchorGravity="center_horizontal"/>
 
     <TextView
-        android:id="@+id/connection_status"
-        android:layout_width="248dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="285dp"
-        android:gravity="center"
-        android:text="@string/connection_status"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="center_horizontal" />
+        android:id="@+id/textView"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="185dp"
+        android:text="Weight in trash to date:" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="250dp"
+        android:text="Weight in trash for this month:" />
+
+    <TextView
+        android:id="@+id/totalTrashWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="275dp"
+        android:layout_marginTop="185dp"
+        android:text="null" />
+
+    <TextView
+        android:id="@+id/trashWeight30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="275dp"
+        android:layout_marginTop="250dp"
+        android:text="null" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="159dp"
+        android:layout_marginBottom="41dp"
+        android:onClick="onRefreshClick"
+        android:text="Refresh"
+        app:layout_anchor="@+id/button"
+        app:layout_anchorGravity="top|center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reportListView" />
 
     <ListView
         android:id="@+id/nav_view"
@@ -81,15 +116,5 @@
         android:divider="@color/white"
         android:dividerHeight="2dp"
         android:visibility="invisible" />
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="157dp"
-        android:layout_height="201dp"
-        android:layout_marginTop="585dp"
-        app:srcCompat="@drawable/w"
-        app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="center_horizontal"/>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

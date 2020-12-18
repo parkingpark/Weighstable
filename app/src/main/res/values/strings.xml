@@ -13,7 +13,7 @@
     <string name="percent_label">%</string>
     <string name="create_household">Create</string>
     <string name="enter_member_names">Enter Member Names</string>
-    <string name="edit_names">Name 1, Name 2, etc</string>
+    <string name="edit_names">Name1,Name2,etc</string>
     <string name="submit">Submit</string>
     <string name="check_server">Check Server</string>
     <string name="connection_status">Connection Status:</string>

@@ -37,6 +37,10 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, R.layout.spinner, days);
         //myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
+        if (household.getTrashDay() != null) {
+            int pos = myAdapter.getPosition(household.getTrashDay());
+            mySpinner.setSelection(pos);
+        }
         Button button = (Button) findViewById(R.id.dayButton);
 
         mySpinner.setOnItemSelectedListener(this);
@@ -72,6 +76,7 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
                         break;
                 }
 
+                household.setTrashDay(trash);
                 intent.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
                 intent.putExtra("title", "Trashday");
                 startActivity(intent);
@@ -84,7 +89,7 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 ListView nav_view = (ListView) findViewById(R.id.nav_view);
-                String[] pages = {"Home", "Calendar", "Data"};
+                String[] pages = {"Home", "Household", "Data", "Log Activity"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(CalendarActivity.this, R.layout.listview, pages);
                 nav_view.setAdapter(pages_adapter);
                 nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,6 +102,8 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
                             startActivity(new Intent(CalendarActivity.this, HouseholdActivity.class));
                         } else if (selected.equals("Data")) {
                             startActivity(new Intent(CalendarActivity.this, DataActivity.class));
+                        } else if (selected.equals("Log Activity")) {
+                            startActivity(new Intent(CalendarActivity.this, LogActivity.class));
                         }
                     }
                 });

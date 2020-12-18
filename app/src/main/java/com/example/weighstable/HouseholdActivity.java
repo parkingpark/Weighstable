@@ -52,11 +52,12 @@ public class HouseholdActivity extends AppCompatActivity {
         submit_form.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                household = new Household();
                 EditText names = (EditText) findViewById(R.id.edit_names);
                 String[] n = names.getText().toString().split(",");
                 household.setPeople(n);
                 household_form.setVisibility(View.GONE);
-                ArrayAdapter<String> names_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, n);
+                ArrayAdapter<String> names_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, household.getPeople());
                 household_view.setAdapter(names_adapter);
                 household_view.setVisibility(View.VISIBLE);
             }
@@ -67,7 +68,7 @@ public class HouseholdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ListView nav_view = (ListView) findViewById(R.id.nav_view);
-                String[] pages = {"Home", "Calendar", "Data"};
+                String[] pages = {"Home", "Calendar", "Data", "Log Activity"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, pages);
                 nav_view.setAdapter(pages_adapter);
                 nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,11 +81,14 @@ public class HouseholdActivity extends AppCompatActivity {
                             startActivity(new Intent(HouseholdActivity.this, CalendarActivity.class));
                         } else if (selected.equals("Data")) {
                             startActivity(new Intent(HouseholdActivity.this, DataActivity.class));
+                        } else if (selected.equals("Log Activity")) {
+                            startActivity(new Intent(HouseholdActivity.this, LogActivity.class));
                         }
                     }
                 });
                 if (nav_view.getVisibility() == View.INVISIBLE){
                     nav_view.setVisibility(View.VISIBLE);
+                    nav_view.bringToFront();
                 } else {
                     nav_view.setVisibility(View.INVISIBLE);
                 }
