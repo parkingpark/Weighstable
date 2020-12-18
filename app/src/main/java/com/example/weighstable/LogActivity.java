@@ -51,19 +51,33 @@ public class LogActivity extends AppCompatActivity {
 
     private static final String TAG = "LogActivity";
     private FirebaseFirestore db;
+    CollectionReference takeoutRef = db.collection("takeout");
     private DocumentReference reportRef;
     private ArrayList<TakeoutData> dump = new ArrayList<>();
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         db = FirebaseFirestore.getInstance();
+        button = findViewById(R.id.button);
 
-        CollectionReference takeoutRef = db.collection("takeout");
+
         Query queryTotal = takeoutRef.orderBy("timestamp");
         Map<String, Object> input = new HashMap<>();
 
+        ListView reportListView1 = findViewById(R.id.reportListView);
+        ArrayAdapter<TakeoutData> adapter = new ArrayAdapter<TakeoutData>(
+                this, android.R.layout.simple_list_item_1, new ArrayList<TakeoutData>());
+        TakeoutData test = new TakeoutData("12345", "123", 12.1);
+        dump.add(test);
+        adapter.addAll(dump);
+        reportListView1.setAdapter(adapter); // error line
+
+    }
+
+    public void onRefreshClick(View view) {
         takeoutRef.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -80,19 +94,9 @@ public class LogActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-        ListView reportListView1 = findViewById(R.id.reportListView);
-        ArrayAdapter<TakeoutData> adapter = new ArrayAdapter<TakeoutData>(
-                this, android.R.layout.simple_list_item_1, new ArrayList<TakeoutData>());
-
-        TakeoutData test = new TakeoutData("12345", "123", 12.1);
-
-        dump.add(test);
-
-        adapter.addAll(dump);
-
-        reportListView1.setAdapter(adapter); // error line
-
     }
+
+
+
 
 }
