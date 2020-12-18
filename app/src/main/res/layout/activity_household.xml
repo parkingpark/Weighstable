@@ -135,13 +135,24 @@
         app:layout_anchor="@+id/household_form"
         app:layout_anchorGravity="bottom|center">
 
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Schedule"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/household_view" />
+
         <ListView
             android:id="@+id/household_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_marginTop="300dp"
-            android:layout_marginBottom="300dp"
+            android:layout_marginTop="350dp"
+            android:layout_marginBottom="250dp"
             android:background="#FFFFFF"
             android:divider="@color/white"
             android:dividerHeight="2dp"
