@@ -88,6 +88,7 @@ public class HouseholdActivity extends AppCompatActivity {
                 });
                 if (nav_view.getVisibility() == View.INVISIBLE){
                     nav_view.setVisibility(View.VISIBLE);
+                    nav_view.bringToFront();
                 } else {
                     nav_view.setVisibility(View.INVISIBLE);
                 }
