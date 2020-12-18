@@ -82,26 +82,6 @@ public class DataActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<TakeoutData>(
                 this, android.R.layout.simple_list_item_1, new ArrayList<TakeoutData>());
 
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String timeData = dateTime.format(timestamp);
-        String[] split = timeData.split(".");
-
-        for (TakeoutData doota : dump) {
-            String currentTimeData = dateTime.format(timestamp);
-            String[] currentSplit = currentTimeData.split(".");
-            totalWeight += doota.getWeight();
-            if(split[0].equals(currentSplit[0])) {
-                if(split[1].equals(currentSplit[1])){
-                    weight30 += doota.getWeight();
-                }
-            }
-        }
-
-        totalTrashWeight.setText(String.valueOf(totalWeight));
-        trashWeight30.setText(String.valueOf(weight30));
-
-
-
     }
 
 
@@ -122,10 +102,23 @@ public class DataActivity extends AppCompatActivity {
 
                 });
 
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String timeData = dateTime.format(timestamp);
+        String[] split = timeData.split(".");
+
+        for (TakeoutData doota : dump) {
+            String currentTimeData = dateTime.format(timestamp);
+            String[] currentSplit = currentTimeData.split(".");
+            totalWeight += doota.getWeight();
+            if(split[0].equals(currentSplit[0])) {
+                if(split[1].equals(currentSplit[1])){
+                    weight30 += doota.getWeight();
+                }
+            }
+        }
+
         totalTrashWeight.setText(String.valueOf(totalWeight));
         trashWeight30.setText(String.valueOf(weight30));
-
-
 
     }
 }
