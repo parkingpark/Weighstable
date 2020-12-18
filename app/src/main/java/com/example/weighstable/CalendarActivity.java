@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.*;
 
 import com.example.weighstable.household.Household;
+import com.example.weighstable.util.DeviceReadWrite;
 
+import java.io.IOException;
 import java.util.Calendar;
 
 public class CalendarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -20,12 +22,15 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
     private Spinner mySpinner;
     private String valueFromSpinner;
     private String trash;
+    private Household household;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
+        checkForHousehold();
 
         mySpinner = findViewById(R.id.spinner);
         String[] days = getResources().getStringArray(R.array.names);
@@ -74,8 +79,34 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
-
-
+        ImageView nav = (ImageView) findViewById(R.id.nav);
+        nav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListView nav_view = (ListView) findViewById(R.id.nav_view);
+                String[] pages = {"Home", "Calendar", "Data"};
+                ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(CalendarActivity.this, R.layout.listview, pages);
+                nav_view.setAdapter(pages_adapter);
+                nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selected = parent.getItemAtPosition(position).toString();
+                        if (selected.equals("Home")) {
+                            startActivity(new Intent(CalendarActivity.this, MainActivity.class));
+                        } else if (selected.equals("Household")) {
+                            startActivity(new Intent(CalendarActivity.this, HouseholdActivity.class));
+                        } else if (selected.equals("Data")) {
+                            startActivity(new Intent(CalendarActivity.this, DataActivity.class));
+                        }
+                    }
+                });
+                if (nav_view.getVisibility() == View.INVISIBLE){
+                    nav_view.setVisibility(View.VISIBLE);
+                } else {
+                    nav_view.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
     }
 
 
@@ -112,5 +143,27 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    protected void checkForHousehold() {
+        try {
+            household = DeviceReadWrite.readHousehold(getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (household != null) {
+            try {
+                DeviceReadWrite.writeHousehold(household, getApplicationContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
