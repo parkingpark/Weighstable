@@ -1,10 +1,14 @@
 package com.example.weighstable;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,6 +25,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -86,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
     ParticleDevice device;
 
     private Household household;
+    private Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +117,12 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         checkForHousehold();
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_LOW);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
 
         ImageView nav = (ImageView) findViewById(R.id.nav);
         nav.setOnClickListener(new View.OnClickListener() {
@@ -407,4 +422,42 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handler.postDelayed(runnable = new Runnable() {
+            public void run() {
+                handler.postDelayed(runnable, delay);
+                try {
+                    if (Integer.valueOf(weightData.toString()) >= Integer.valueOf(household.getwLimit())) {
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "My Notification");
+                        builder.setContentTitle("Weighstable");
+                        builder.setContentText("Your trash if full!");
+                        builder.setSmallIcon(R.drawable.ic_launcher_background);
+                        builder.setAutoCancel(true);
+                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
+                        managerCompat.notify(1, builder.build());
+                    }
+                } catch (Exception e) {
+
+                }
+                try {
+                    if (Integer.valueOf(capacityData.toString()) >= Integer.valueOf(household.getcLimit())) {
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "My Notification");
+                        builder.setContentTitle("Weighstable");
+                        builder.setContentText("Your trash if full!");
+                        builder.setSmallIcon(R.drawable.ic_launcher_background);
+                        builder.setAutoCancel(true);
+                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
+                        managerCompat.notify(1, builder.build());
+                    }
+                } catch (Exception e) {
+
+                }
+            }
+        }, delay);
+        super.onResume();
+    }
+
 }
