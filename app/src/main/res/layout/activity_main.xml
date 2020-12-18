@@ -10,8 +10,8 @@
         android:id="@+id/person2"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="530dp"
         android:textColor="@color/black" />
 
     <com.google.android.material.appbar.AppBarLayout
@@ -239,8 +239,8 @@
         android:id="@+id/iTookOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="525dp"
         android:background="#FA0000"
         android:backgroundTint="#FF0000"
         android:foregroundTint="#FF0000"
@@ -252,9 +252,18 @@
         android:id="@+id/reportName"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="530dp"
         android:autofillHints="name"
         android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="130dp"
+        android:layout_height="179dp"
+        android:layout_marginTop="590dp"
+        app:srcCompat="@drawable/w"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="center_horizontal"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

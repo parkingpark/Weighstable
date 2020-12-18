@@ -51,12 +51,12 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="157dp"
-        android:layout_height="201dp"
-        android:layout_marginTop="500dp"
+        android:layout_width="130dp"
+        android:layout_height="179dp"
+        android:layout_marginTop="590dp"
+        app:srcCompat="@drawable/w"
         app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="center_horizontal"
-        app:srcCompat="@drawable/w" />
+        app:layout_anchorGravity="center_horizontal"/>
 
     <TextView
         android:id="@+id/textView"

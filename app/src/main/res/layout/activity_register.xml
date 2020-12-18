@@ -9,107 +9,93 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="103dp"
+        android:background="#FFFFFF">
 
-
-    <com.google.android.material.appbar.CollapsingToolbarLayout
-        android:id="@+id/collapsingToolbarLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-
-
-        android:background="#FF7700"
-        app:contentScrim="?android:attr/colorFocusedHighlight"
-        app:layout_constraintBottom_toTopOf="@+id/registerHeader"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-        app:toolbarId="@+id/toolbar">
-
-
-        <ImageView
-            android:id="@+id/app_name"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            app:srcCompat="@drawable/logo_white" />
+            android:layout_height="73dp"
+            android:background="#FF7700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:contentScrim="?android:attr/colorFocusedHighlight"
 
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:toolbarId="@+id/toolbar">
 
+            <ImageView
+                android:id="@+id/app_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/logo_white" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginBottom="17dp"
         android:text="Create New Account"
         app:layout_constraintBottom_toTopOf="@+id/userName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/userName"
         app:layout_constraintTop_toBottomOf="@+id/registerHeader" />
 
     <EditText
         android:id="@+id/userEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="Email Address"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/userPassword"
-        app:layout_constraintEnd_toEndOf="@+id/userPassword"
+        app:layout_constraintStart_toStartOf="@+id/userName"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
 
     <EditText
         android:id="@+id/userPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="26dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/confPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/userEmail"
         app:layout_constraintTop_toBottomOf="@+id/userEmail" />
 
     <EditText
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="18dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/userEmail"
-        app:layout_constraintStart_toStartOf="@+id/userEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
 
     <TextView
         android:id="@+id/registerHeader"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:background="#595959"
-        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="112dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="7dp"
         android:text="Register"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#FFFFFF"
-        app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="bottom|center"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/collapsingToolbarLayout" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/confPassword"
@@ -127,10 +113,11 @@
         android:id="@+id/sendToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="22dp"
         android:text="Already Registered? Click Here To Login"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/butRegister" />
 
@@ -150,12 +137,10 @@
         android:id="@+id/butRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="17dp"
         android:text="Register"
         app:layout_constraintBottom_toTopOf="@+id/sendToLogin"
-        app:layout_constraintEnd_toEndOf="@+id/userEmail"
-        app:layout_constraintStart_toStartOf="@+id/confPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>
