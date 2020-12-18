@@ -434,7 +434,11 @@ public class MainActivity extends AppCompatActivity {
                     if (Integer.valueOf(weightData.toString()) >= Integer.valueOf(household.getwLimit())) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "My Notification");
                         builder.setContentTitle("Weighstable");
-                        builder.setContentText("Your trash if full!");
+                        if (household.getPeople() != null) {
+                            builder.setContentText("Your trash is full! Its " + household.getPeople()[0] + "'s turn.");
+                        } else {
+                            builder.setContentText("Your trash is full!");
+                        }
                         builder.setSmallIcon(R.drawable.ic_launcher_background);
                         builder.setAutoCancel(true);
                         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
@@ -447,7 +451,11 @@ public class MainActivity extends AppCompatActivity {
                     if (Integer.valueOf(capacityData.toString()) >= Integer.valueOf(household.getcLimit())) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "My Notification");
                         builder.setContentTitle("Weighstable");
-                        builder.setContentText("Your trash if full!");
+                        if (household.getPeople() != null) {
+                            builder.setContentText("Your trash is full! Its " + household.getPeople()[0] + "'s turn.");
+                        } else {
+                            builder.setContentText("Your trash is full!");
+                        }
                         builder.setSmallIcon(R.drawable.ic_launcher_background);
                         builder.setAutoCancel(true);
                         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
