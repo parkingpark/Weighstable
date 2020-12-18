@@ -53,11 +53,14 @@ public class DataActivity extends AppCompatActivity {
     private EditText reportName;
     private FirebaseFirestore db;
     private DocumentReference reportRef;
+    CollectionReference takeoutRef;
     private double totalWeight = 0;
     private double weight30 = 0;
     private ArrayList<TakeoutData> dump = new ArrayList<>();
+    Button button;
     TextView totalTrashWeight;
     TextView trashWeight30;
+    ArrayAdapter<TakeoutData> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,69 +70,36 @@ public class DataActivity extends AppCompatActivity {
         totalTrashWeight = findViewById(R.id.totalTrashWeight);
         // weight from last 30 days
         trashWeight30 = findViewById(R.id.trashWeight30);
-        // whos turn is it next?
 
         db = FirebaseFirestore.getInstance();
+        button = findViewById(R.id.button);
+        takeoutRef = db.collection("takeout");
 
-        if (totalTrashWeight.length() == 0)
-            totalTrashWeight.setText("0");
-        if (trashWeight30.length() == 0)
-            trashWeight30.setText("0");
-
-        CollectionReference takeoutRef = db.collection("takeout");
-        Query queryTotal = takeoutRef.orderBy("timestamp");
-        Map<String, Object> input = new HashMap<>();
+        adapter = new ArrayAdapter<TakeoutData>(
+                this, android.R.layout.simple_list_item_1, new ArrayList<TakeoutData>());
+    }
 
 
-
+    public void onRefreshClick(View view) {
         takeoutRef.get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        ArrayList<TakeoutData> dump = new ArrayList<>();
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
                             TakeoutData t = document.toObject(TakeoutData.class);
                             dump.add(t);
                         }
-
-                    } else {
-                        Log.w(TAG, "Error getting documents.", task.getException());
+                        adapter.clear();
+                        adapter.addAll(dump);
                     }
-                }
-            });
 
-            //TextView testPost = (TextView) findViewById(R.id.textView5);
-            //.setText(dump);
+                });
 
-            ImageView nav = (ImageView) findViewById(R.id.nav);
-            nav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ListView nav_view = (ListView) findViewById(R.id.nav_view);
-                    String[] pages = {"Home", "Household", "Calendar"};
-                    ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(DataActivity.this, R.layout.listview, pages);
-                    nav_view.setAdapter(pages_adapter);
-                    nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            String selected = parent.getItemAtPosition(position).toString();
-                            if (selected.equals("Home")) {
-                                startActivity(new Intent(DataActivity.this, MainActivity.class));
-                            } else if (selected.equals("Household")) {
-                                startActivity(new Intent(DataActivity.this, HouseholdActivity.class));
-                            } else if (selected.equals("Calendar")) {
-                                startActivity(new Intent(DataActivity.this, CalendarActivity.class));
-                            }
-                        }
-                    });
-                    if (nav_view.getVisibility() == View.INVISIBLE) {
-                        nav_view.setVisibility(View.VISIBLE);
-                        nav_view.setVisibility(View.VISIBLE);
-                    } else {
-                        nav_view.setVisibility(View.INVISIBLE);
-                    }
-                }
-            });
-        }
+
+
     }
+}
+
+
