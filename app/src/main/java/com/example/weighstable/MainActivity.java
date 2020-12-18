@@ -346,6 +346,10 @@ public class MainActivity extends AppCompatActivity {
                         });
             }
         });
+        TextView trashDayView = (TextView) findViewById(R.id.day);
+        if (household.getTrashDay() != null) {
+            trashDayView.setText(household.getTrashDay());
+        }
     }
 
     private void MySyncTasks() {
