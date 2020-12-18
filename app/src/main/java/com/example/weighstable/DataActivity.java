@@ -136,17 +136,19 @@ public class DataActivity extends AppCompatActivity {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String timeData = dateTime.format(timestamp);
-        String[] split = timeData.split(".");
+        String[] split = timeData.split("\\.");
+        Log.d(TAG, "??????????????????????" + split[0] + "!!!!!!!!!!!!!!!" + split[1]);
 
         for (TakeoutData doota : dump) {
             String currentTimeData = dateTime.format(timestamp);
-            String[] currentSplit = currentTimeData.split(".");
+            String[] currentSplit = currentTimeData.split("\\.");
+            Log.d(TAG, "??????????????????????" + currentSplit[0] + "!!!!!!!!!!!!!!!" + currentSplit[1]);
             totalWeight += doota.getWeight();
-//            if(split[0].equals(currentSplit[0])) {
-//                if(split[1].equals(currentSplit[1])){
-//                    weight30 += doota.getWeight();
-//                }
-//            }
+            if(split[0].equals(currentSplit[0])) {
+                if(split[1].equals(currentSplit[1])){
+                    weight30 += doota.getWeight();
+                }
+            }
         }
 
         totalTrashWeight.setText(String.valueOf(totalWeight));
