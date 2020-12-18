@@ -353,6 +353,7 @@ public class MainActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                household.rotate();
                                 Toast.makeText(MainActivity.this, "Input Saved", Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "Success");
                             }
