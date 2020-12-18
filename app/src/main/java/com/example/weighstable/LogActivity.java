@@ -51,17 +51,20 @@ public class LogActivity extends AppCompatActivity {
 
     private static final String TAG = "LogActivity";
     private FirebaseFirestore db;
-    CollectionReference takeoutRef = db.collection("takeout");
+    CollectionReference takeoutRef;
     private DocumentReference reportRef;
-    private ArrayList<TakeoutData> dump = new ArrayList<>();
+    private ArrayList<TakeoutData> dump;
     Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_log);
 
         db = FirebaseFirestore.getInstance();
         button = findViewById(R.id.button);
+        takeoutRef = db.collection("takeout");
+        dump = new ArrayList<>();
 
 
         Query queryTotal = takeoutRef.orderBy("timestamp");
