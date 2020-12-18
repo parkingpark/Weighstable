@@ -57,8 +57,6 @@ public class DataActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private DocumentReference reportRef;
     CollectionReference takeoutRef;
-    private double totalWeight = 0;
-    private double weight30 = 0;
     private ArrayList<TakeoutData> dump = new ArrayList<>();
     Button button;
     TextView totalTrashWeight;
@@ -131,8 +129,10 @@ public class DataActivity extends AppCompatActivity {
 
                 });
 
-        totalWeight = 0;
-        weight30 = 0;
+        double totalWeight = 0.0;
+        double weight30 = 0.0;
+
+        if(totalWeight == 0.0) {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String timeData = dateTime.format(timestamp);
@@ -140,6 +140,8 @@ public class DataActivity extends AppCompatActivity {
         Log.d(TAG, "??????????????????????" + split[0] + "!!!!!!!!!!!!!!!" + split[1]);
 
         for (TakeoutData doota : dump) {
+            weight30 = 0.0;
+            totalWeight = 0.0;
             String currentTimeData = dateTime.format(timestamp);
             String[] currentSplit = currentTimeData.split("\\.");
             Log.d(TAG, "??????????????????????" + currentSplit[0] + "!!!!!!!!!!!!!!!" + currentSplit[1]);
@@ -151,8 +153,11 @@ public class DataActivity extends AppCompatActivity {
             }
         }
 
-        totalTrashWeight.setText(String.valueOf(totalWeight + "lbs"));
-        trashWeight30.setText(String.valueOf(weight30 + "lbs"));
+
+
+            totalTrashWeight.setText(String.valueOf(Double.toString(totalWeight) + "lbs"));
+            trashWeight30.setText(String.valueOf(Double.toString(weight30) + "lbs"));
+        }
 
     }
 }
