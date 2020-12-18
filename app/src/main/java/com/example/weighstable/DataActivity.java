@@ -16,6 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,6 +64,7 @@ public class DataActivity extends AppCompatActivity {
     TextView totalTrashWeight;
     TextView trashWeight30;
     ArrayAdapter<TakeoutData> adapter;
+    private static final SimpleDateFormat dateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +131,27 @@ public class DataActivity extends AppCompatActivity {
                     }
 
                 });
+
+        totalWeight = 0;
+        weight30 = 0;
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String timeData = dateTime.format(timestamp);
+        String[] split = timeData.split(".");
+
+        for (TakeoutData doota : dump) {
+            String currentTimeData = dateTime.format(timestamp);
+            String[] currentSplit = currentTimeData.split(".");
+            totalWeight += doota.getWeight();
+//            if(split[0].equals(currentSplit[0])) {
+//                if(split[1].equals(currentSplit[1])){
+//                    weight30 += doota.getWeight();
+//                }
+//            }
+        }
+
+        totalTrashWeight.setText(String.valueOf(totalWeight));
+        trashWeight30.setText(String.valueOf(weight30));
 
     }
 }

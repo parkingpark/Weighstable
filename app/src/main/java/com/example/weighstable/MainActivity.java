@@ -6,6 +6,8 @@ import android.hardware.Sensor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +27,8 @@ import java.sql.Connection;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.example.weighstable.household.Household;
+import com.example.weighstable.util.DeviceReadWrite;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -81,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
     int minCapacity = 0;
     ParticleDevice device;
 
+    private Household household;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        checkForHousehold();
 
         ImageView nav = (ImageView) findViewById(R.id.nav);
         nav.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +150,61 @@ public class MainActivity extends AppCompatActivity {
 
         tv2 = findViewById(R.id.display_capacity);
         tv2.setText(String.valueOf(getIntent().getIntExtra(ARG_VALUE, 0)));
+
+        EditText weightLimit = (EditText) findViewById(R.id.weight_input);
+        EditText capLimit = (EditText) findViewById(R.id.capacity_input);
+
+        TextWatcher capWatch = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    int cLimit = Integer.parseInt(capLimit.getText().toString());
+                    household.setcLimit(cLimit);
+                } catch (NumberFormatException e) {
+
+                }
+            }
+        };
+
+        TextWatcher weightWatch = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    int wLimit = Integer.parseInt(weightLimit.getText().toString());
+                    household.setwLimit(wLimit);
+                } catch (NumberFormatException e) {
+
+                }
+            }
+        };
+
+        if (household != null) {
+            weightLimit.setText(String.valueOf(household.getwLimit()));
+            capLimit.setText(String.valueOf(household.getcLimit()));
+        }
+
+        capLimit.addTextChangedListener(capWatch);
+        weightLimit.addTextChangedListener(weightWatch);
 
 
         //findViewById(R.id.refresh_button).setOnClickListener(v -> {
@@ -312,5 +375,27 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    protected void checkForHousehold() {
+        try {
+            household = DeviceReadWrite.readHousehold(getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (household != null) {
+            try {
+                DeviceReadWrite.writeHousehold(household, getApplicationContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
