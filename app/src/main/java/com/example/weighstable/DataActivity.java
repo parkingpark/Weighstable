@@ -55,7 +55,7 @@ public class DataActivity extends AppCompatActivity {
     private static final String TAG = "DataActivity";
     private EditText reportName;
     private FirebaseFirestore db;
-    private static final SimpleDateFormat dateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+    private int check;
     private DocumentReference reportRef;
     CollectionReference takeoutRef;
     private ArrayList<TakeoutData> dump = new ArrayList<>();
@@ -63,7 +63,7 @@ public class DataActivity extends AppCompatActivity {
     TextView totalTrashWeight;
     TextView trashWeight30;
     ArrayAdapter<TakeoutData> adapter;
-    private int check;
+    private static final SimpleDateFormat dateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
