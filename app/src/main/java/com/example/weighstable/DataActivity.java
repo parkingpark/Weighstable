@@ -150,7 +150,7 @@ public class DataActivity extends AppCompatActivity {
                 String[] currentSplit = currentTimeData.split("\\.");
                 Log.d(TAG, "??????????????????????" + currentSplit[0] + "!!!!!!!!!!!!!!!" + currentSplit[1]);
                 totalWeight += doota.getWeight();
-                if (split[0].equals(currentSplit[0])) {
+                if (Integer.parseInt(split[0]) == Integer.parseInt(currentSplit[0])) {
                     if (split[1].equals(currentSplit[1])) {
                         weight30 += doota.getWeight();
                     }
