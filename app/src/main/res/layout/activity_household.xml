@@ -17,7 +17,8 @@
         android:text="@string/create_household"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:backgroundTint="#595959" />
+        app:backgroundTint="#595959"
+        tools:visibility="invisible" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -68,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="invisible"
-        tools:visibility="invisible">
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,6 +93,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@string/edit_names"
+                android:textAlignment="viewStart"
                 android:textColor="@color/black" />
 
             <Button
@@ -106,9 +108,9 @@
 
     <ListView
         android:id="@+id/household_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal|center_vertical"
         android:background="#595959"
         android:divider="@color/white"
         android:dividerHeight="2dp"
