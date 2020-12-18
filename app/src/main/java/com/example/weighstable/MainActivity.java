@@ -349,11 +349,12 @@ public class MainActivity extends AppCompatActivity {
                 //input.put(KEY_WEIGHT, 12.0);
                 input.put("timestamp", timeData);
 
+                household.rotate();
+
                 documentReference.set(input)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                household.rotate();
                                 Toast.makeText(MainActivity.this, "Input Saved", Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "Success");
                             }

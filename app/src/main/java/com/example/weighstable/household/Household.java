@@ -55,7 +55,7 @@ public class Household implements Serializable {
     public void rotate() {
         if (people != null) {
             String temp = people[0];
-            for (int i=1; i < people.length + 1; i++) {
+            for (int i=1; i < people.length; i++) {
                 people[i - 1] = people[i];
             }
             people[people.length - 1] = temp;
