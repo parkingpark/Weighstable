@@ -146,8 +146,7 @@ public class DataActivity extends AppCompatActivity {
             Log.d(TAG, "??????????????????????" + split[0] + "!!!!!!!!!!!!!!!" + split[1]);
 
             for (TakeoutData doota : dump) {
-                String currentTimeData = dateTime.format(timestamp);
-                String[] currentSplit = currentTimeData.split("\\.");
+                String[] currentSplit = doota.getTimestamp().split("\\.");
                 Log.d(TAG, "??????????????????????" + currentSplit[0] + "!!!!!!!!!!!!!!!" + currentSplit[1]);
                 totalWeight += doota.getWeight();
                 if (Integer.parseInt(split[0]) == Integer.parseInt(currentSplit[0])) {
