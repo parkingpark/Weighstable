@@ -10,12 +10,12 @@
         android:id="@+id/appbar"
 
         android:layout_width="match_parent"
-        android:layout_height="118dp"
+        android:layout_height="103dp"
         android:background="#FFFFFF">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="73dp"
             android:background="#FF7700"
             app:contentScrim="?android:attr/colorFocusedHighlight"
 
@@ -48,16 +48,6 @@
         android:textColor="#FFFFFF"
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="bottom|center" />
-
-    <ListView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:background="#595959"
-        android:divider="@color/white"
-        android:dividerHeight="2dp"
-        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/logo"
@@ -102,7 +92,7 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="159dp"
         android:layout_marginTop="400dp"
@@ -116,6 +106,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reportListView" />
+
+    <ListView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:background="#595959"
+        android:divider="@color/white"
+        android:dividerHeight="2dp"
+        android:visibility="invisible" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
