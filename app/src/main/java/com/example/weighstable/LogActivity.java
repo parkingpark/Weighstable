@@ -53,8 +53,10 @@ public class LogActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     CollectionReference takeoutRef;
     private DocumentReference reportRef;
-    private ArrayList<TakeoutData> dump;
+
     Button button;
+    ListView reportListView1;
+    ArrayAdapter<TakeoutData> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +66,11 @@ public class LogActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         button = findViewById(R.id.button);
         takeoutRef = db.collection("takeout");
-        dump = new ArrayList<>();
 
-
-        Query queryTotal = takeoutRef.orderBy("timestamp");
-        Map<String, Object> input = new HashMap<>();
-
-        ListView reportListView1 = findViewById(R.id.reportListView);
-        ArrayAdapter<TakeoutData> adapter = new ArrayAdapter<TakeoutData>(
+        adapter = new ArrayAdapter<TakeoutData>(
                 this, android.R.layout.simple_list_item_1, new ArrayList<TakeoutData>());
-        TakeoutData test = new TakeoutData("12345", "123", 12.1);
-        dump.add(test);
-        adapter.addAll(dump);
+
+        reportListView1 = findViewById(R.id.reportListView);
         reportListView1.setAdapter(adapter); // error line
 
     }
@@ -85,21 +80,16 @@ public class LogActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                TakeoutData t = document.toObject(TakeoutData.class);
-                                dump.add(t);
-                            }
-
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                        ArrayList<TakeoutData> dump = new ArrayList<>();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d(TAG, document.getId() + " => " + document.getData());
+                            TakeoutData t = document.toObject(TakeoutData.class);
+                            dump.add(t);
                         }
+                        adapter.clear();
+                        adapter.addAll(dump);
                     }
+
                 });
     }
-
-
-
-
 }
