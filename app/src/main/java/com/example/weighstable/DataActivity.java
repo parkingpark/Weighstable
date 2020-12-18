@@ -100,8 +100,7 @@ public class DataActivity extends AppCompatActivity {
 
 
 
-        totalTrashWeight.setText(String.valueOf(totalWeight));
-        trashWeight30.setText(String.valueOf(weight30));
+
     }
 
 
@@ -121,6 +120,9 @@ public class DataActivity extends AppCompatActivity {
                     }
 
                 });
+
+        totalTrashWeight.setText(String.valueOf(totalWeight));
+        trashWeight30.setText(String.valueOf(weight30));
 
 
 
