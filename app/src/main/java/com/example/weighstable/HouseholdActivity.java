@@ -68,7 +68,7 @@ public class HouseholdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ListView nav_view = (ListView) findViewById(R.id.nav_view);
-                String[] pages = {"Home", "Calendar", "Data"};
+                String[] pages = {"Home", "Calendar", "Data", "Log Activity"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, pages);
                 nav_view.setAdapter(pages_adapter);
                 nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -81,6 +81,8 @@ public class HouseholdActivity extends AppCompatActivity {
                             startActivity(new Intent(HouseholdActivity.this, CalendarActivity.class));
                         } else if (selected.equals("Data")) {
                             startActivity(new Intent(HouseholdActivity.this, DataActivity.class));
+                        } else if (selected.equals("Log Activity")) {
+                            startActivity(new Intent(HouseholdActivity.this, LogActivity.class));
                         }
                     }
                 });

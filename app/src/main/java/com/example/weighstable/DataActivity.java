@@ -77,6 +77,37 @@ public class DataActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<TakeoutData>(
                 this, android.R.layout.simple_list_item_1, new ArrayList<TakeoutData>());
+
+        ImageView nav = (ImageView) findViewById(R.id.nav);
+        nav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListView nav_view = (ListView) findViewById(R.id.nav_view);
+                String[] pages = {"Home", "Household", "Calendar", "Log Activity"};
+                ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(DataActivity.this, R.layout.listview, pages);
+                nav_view.setAdapter(pages_adapter);
+                nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selected = parent.getItemAtPosition(position).toString();
+                        if (selected.equals("Home")) {
+                            startActivity(new Intent(DataActivity.this, MainActivity.class));
+                        } else if (selected.equals("Household")) {
+                            startActivity(new Intent(DataActivity.this, HouseholdActivity.class));
+                        } else if (selected.equals("Calendar")) {
+                            startActivity(new Intent(DataActivity.this, CalendarActivity.class));
+                        } else if (selected.equals("Log Activity")) {
+                            startActivity(new Intent(DataActivity.this, LogActivity.class));
+                        }
+                    }
+                });
+                if (nav_view.getVisibility() == View.INVISIBLE) {
+                    nav_view.setVisibility(View.VISIBLE);
+                } else {
+                    nav_view.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
     }
 
 
@@ -96,8 +127,6 @@ public class DataActivity extends AppCompatActivity {
                     }
 
                 });
-
-
 
     }
 }

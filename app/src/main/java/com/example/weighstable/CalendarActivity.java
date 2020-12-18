@@ -84,7 +84,7 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 ListView nav_view = (ListView) findViewById(R.id.nav_view);
-                String[] pages = {"Home", "Calendar", "Data"};
+                String[] pages = {"Home", "Household", "Data", "Log Activity"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(CalendarActivity.this, R.layout.listview, pages);
                 nav_view.setAdapter(pages_adapter);
                 nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,6 +97,8 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
                             startActivity(new Intent(CalendarActivity.this, HouseholdActivity.class));
                         } else if (selected.equals("Data")) {
                             startActivity(new Intent(CalendarActivity.this, DataActivity.class));
+                        } else if (selected.equals("Log Activity")) {
+                            startActivity(new Intent(CalendarActivity.this, LogActivity.class));
                         }
                     }
                 });
