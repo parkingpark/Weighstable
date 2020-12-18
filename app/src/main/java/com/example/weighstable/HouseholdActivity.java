@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.weighstable.household.Household;
 import com.example.weighstable.util.DeviceReadWrite;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 
@@ -68,7 +69,7 @@ public class HouseholdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ListView nav_view = (ListView) findViewById(R.id.nav_view);
-                String[] pages = {"Home", "Calendar", "Data", "Log Activity"};
+                String[] pages = {"Home", "Calendar", "Data", "Log Activity", "Logout"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(HouseholdActivity.this, R.layout.listview, pages);
                 nav_view.setAdapter(pages_adapter);
                 nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,6 +84,11 @@ public class HouseholdActivity extends AppCompatActivity {
                             startActivity(new Intent(HouseholdActivity.this, DataActivity.class));
                         } else if (selected.equals("Log Activity")) {
                             startActivity(new Intent(HouseholdActivity.this, LogActivity.class));
+                        } else if (selected.equals("Logout")) {
+                            FirebaseAuth.getInstance().signOut();// logout
+                            startActivity(new Intent(getApplicationContext(), Login.class));
+                            finish();
+                            startActivity(new Intent(HouseholdActivity.this, Login.class));
                         }
                     }
                 });

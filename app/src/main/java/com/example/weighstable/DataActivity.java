@@ -83,7 +83,7 @@ public class DataActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ListView nav_view = (ListView) findViewById(R.id.nav_view);
-                String[] pages = {"Home", "Household", "Calendar", "Log Activity"};
+                String[] pages = {"Home", "Household", "Calendar", "Log Activity", "Logout"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(DataActivity.this, R.layout.listview, pages);
                 nav_view.setAdapter(pages_adapter);
                 nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -98,6 +98,11 @@ public class DataActivity extends AppCompatActivity {
                             startActivity(new Intent(DataActivity.this, CalendarActivity.class));
                         } else if (selected.equals("Log Activity")) {
                             startActivity(new Intent(DataActivity.this, LogActivity.class));
+                        } else if (selected.equals("Logout")) {
+                            FirebaseAuth.getInstance().signOut();// logout
+                            startActivity(new Intent(getApplicationContext(), Login.class));
+                            finish();
+                            startActivity(new Intent(DataActivity.this, Login.class));
                         }
                     }
                 });
