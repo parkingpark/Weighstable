@@ -55,10 +55,9 @@ public class DataActivity extends AppCompatActivity {
     private static final String TAG = "DataActivity";
     private EditText reportName;
     private FirebaseFirestore db;
+    private int check;
     private DocumentReference reportRef;
     CollectionReference takeoutRef;
-    private double totalWeight = 0;
-    private double weight30 = 0;
     private ArrayList<TakeoutData> dump = new ArrayList<>();
     Button button;
     TextView totalTrashWeight;
@@ -75,6 +74,8 @@ public class DataActivity extends AppCompatActivity {
         // weight from last 30 days
         trashWeight30 = findViewById(R.id.trashWeight30);
 
+        check = 0;
+
         db = FirebaseFirestore.getInstance();
         button = findViewById(R.id.button);
         takeoutRef = db.collection("takeout");
@@ -87,7 +88,7 @@ public class DataActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ListView nav_view = (ListView) findViewById(R.id.nav_view);
-                String[] pages = {"Home", "Household", "Calendar", "Log Activity"};
+                String[] pages = {"Home", "Household", "Calendar", "Log Activity", "Logout"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(DataActivity.this, R.layout.listview, pages);
                 nav_view.setAdapter(pages_adapter);
                 nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -102,6 +103,11 @@ public class DataActivity extends AppCompatActivity {
                             startActivity(new Intent(DataActivity.this, CalendarActivity.class));
                         } else if (selected.equals("Log Activity")) {
                             startActivity(new Intent(DataActivity.this, LogActivity.class));
+                        } else if (selected.equals("Logout")) {
+                            FirebaseAuth.getInstance().signOut();// logout
+                            startActivity(new Intent(getApplicationContext(), Login.class));
+                            finish();
+                            startActivity(new Intent(DataActivity.this, Login.class));
                         }
                     }
                 });
@@ -116,43 +122,51 @@ public class DataActivity extends AppCompatActivity {
 
 
     public void onRefreshClick(View view) {
-        takeoutRef.get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d(TAG, document.getId() + " => " + document.getData());
-                            TakeoutData t = document.toObject(TakeoutData.class);
-                            dump.add(t);
+        if (check == 0) {
+            takeoutRef.get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                TakeoutData t = document.toObject(TakeoutData.class);
+                                dump.add(t);
+                            }
+                            adapter.clear();
+                            adapter.addAll(dump);
                         }
-                        adapter.clear();
-                        adapter.addAll(dump);
-                    }
 
-                });
-
-        totalWeight = 0;
-        weight30 = 0;
-
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String timeData = dateTime.format(timestamp);
-        String[] split = timeData.split("\\.");
-        Log.d(TAG, "??????????????????????" + split[0] + "!!!!!!!!!!!!!!!" + split[1]);
-
-        for (TakeoutData doota : dump) {
-            String currentTimeData = dateTime.format(timestamp);
-            String[] currentSplit = currentTimeData.split("\\.");
-            Log.d(TAG, "??????????????????????" + currentSplit[0] + "!!!!!!!!!!!!!!!" + currentSplit[1]);
-            totalWeight += doota.getWeight();
-            if(split[0].equals(currentSplit[0])) {
-                if(split[1].equals(currentSplit[1])){
-                    weight30 += doota.getWeight();
-                }
-            }
+                    });
+            check = 1;
         }
 
-        totalTrashWeight.setText(String.valueOf(totalWeight + "lbs"));
-        trashWeight30.setText(String.valueOf(weight30 + "lbs"));
+        double totalWeight = 0.0;
+        double weight30 = 0.0;
+
+        if (totalWeight == 0.0) {
+
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            String timeData = dateTime.format(timestamp);
+            String[] split = timeData.split("\\.");
+            Log.d(TAG, "??????????????????????" + split[0] + "!!!!!!!!!!!!!!!" + split[1]);
+
+            for (TakeoutData doota : dump) {
+                String[] currentSplit = doota.getTimestamp().split("\\.");
+                Log.d(TAG, "??????????????????????" + currentSplit[0] + "!!!!!!!!!!!!!!!" + currentSplit[1]);
+                totalWeight += doota.getWeight();
+                if (Integer.parseInt(split[0]) == Integer.parseInt(currentSplit[0])) {
+                    if (split[1].equals(currentSplit[1])) {
+                        weight30 += doota.getWeight();
+                    }
+                }
+            }
+
+
+            totalTrashWeight.setText(String.valueOf(Double.toString(totalWeight) + "lbs"));
+            trashWeight30.setText(String.valueOf(Double.toString(weight30) + "lbs"));
+            weight30 = 0.0;
+            totalWeight = 0.0;
+        }
 
     }
 }
