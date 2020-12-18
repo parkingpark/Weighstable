@@ -10,6 +10,7 @@ import android.widget.*;
 
 import com.example.weighstable.household.Household;
 import com.example.weighstable.util.DeviceReadWrite;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -89,7 +90,7 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 ListView nav_view = (ListView) findViewById(R.id.nav_view);
-                String[] pages = {"Home", "Household", "Data", "Log Activity"};
+                String[] pages = {"Home", "Household", "Data", "Log Activity", "Logout"};
                 ArrayAdapter<String> pages_adapter = new ArrayAdapter<String>(CalendarActivity.this, R.layout.listview, pages);
                 nav_view.setAdapter(pages_adapter);
                 nav_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -104,6 +105,11 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
                             startActivity(new Intent(CalendarActivity.this, DataActivity.class));
                         } else if (selected.equals("Log Activity")) {
                             startActivity(new Intent(CalendarActivity.this, LogActivity.class));
+                        } else if (selected.equals("Logout")) {
+                            FirebaseAuth.getInstance().signOut();// logout
+                            startActivity(new Intent(getApplicationContext(), Login.class));
+                            finish();
+                            startActivity(new Intent(CalendarActivity.this, Login.class));
                         }
                     }
                 });
