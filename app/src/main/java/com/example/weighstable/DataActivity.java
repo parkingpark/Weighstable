@@ -84,7 +84,6 @@ public class DataActivity extends AppCompatActivity {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String timeData = dateTime.format(timestamp);
-        timeData = "yyyy.MM.dd.HH.mm.ss";
         String[] split = timeData.split(".");
 
         for (TakeoutData doota : dump) {
