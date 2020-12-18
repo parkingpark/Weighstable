@@ -41,7 +41,7 @@ public class TakeoutData {
     @NonNull
     @Override
     public String toString() {
-        return this.timestamp + ": " + user + ": " + weight + "lbs";
+        return this.timestamp + ": " + this.user + ": " + this.weight + "lbs";
     }
 
     private String timestamp;
