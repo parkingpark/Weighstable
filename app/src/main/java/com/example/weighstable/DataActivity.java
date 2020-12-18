@@ -120,7 +120,6 @@ public class DataActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        ArrayList<TakeoutData> dump = new ArrayList<>();
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
                             TakeoutData t = document.toObject(TakeoutData.class);
