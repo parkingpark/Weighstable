@@ -55,7 +55,7 @@ public class DataActivity extends AppCompatActivity {
     private static final String TAG = "DataActivity";
     private EditText reportName;
     private FirebaseFirestore db;
-    private int check = 0;
+    private int check;
     private DocumentReference reportRef;
     CollectionReference takeoutRef;
     private ArrayList<TakeoutData> dump = new ArrayList<>();
@@ -73,6 +73,8 @@ public class DataActivity extends AppCompatActivity {
         totalTrashWeight = findViewById(R.id.totalTrashWeight);
         // weight from last 30 days
         trashWeight30 = findViewById(R.id.trashWeight30);
+
+        check = 0;
 
         db = FirebaseFirestore.getInstance();
         button = findViewById(R.id.button);
