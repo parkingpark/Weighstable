@@ -90,7 +90,6 @@ public class DataActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        ArrayList<TakeoutData> dump = new ArrayList<>();
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
                             TakeoutData t = document.toObject(TakeoutData.class);
@@ -102,6 +101,9 @@ public class DataActivity extends AppCompatActivity {
 
                 });
 
+        totalWeight = 0;
+        weight30 = 0;
+
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String timeData = dateTime.format(timestamp);
         String[] split = timeData.split(".");
@@ -110,11 +112,11 @@ public class DataActivity extends AppCompatActivity {
             String currentTimeData = dateTime.format(timestamp);
             String[] currentSplit = currentTimeData.split(".");
             totalWeight += doota.getWeight();
-            if(split[0].equals(currentSplit[0])) {
-                if(split[1].equals(currentSplit[1])){
-                    weight30 += doota.getWeight();
-                }
-            }
+//            if(split[0].equals(currentSplit[0])) {
+//                if(split[1].equals(currentSplit[1])){
+//                    weight30 += doota.getWeight();
+//                }
+//            }
         }
 
         totalTrashWeight.setText(String.valueOf(totalWeight));
