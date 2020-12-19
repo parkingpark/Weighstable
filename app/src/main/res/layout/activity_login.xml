@@ -13,33 +13,40 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="112dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/loginEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="432dp"
+        android:layout_height="63dp"
+        android:background="#FFFFFF">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="0dp"
             android:background="#FF7700"
+
             app:contentScrim="?android:attr/colorFocusedHighlight"
-
-
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
             app:toolbarId="@+id/toolbar">
 
-
             <ImageView
                 android:id="@+id/app_name"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:layout_marginTop="0dp"
                 app:srcCompat="@drawable/logo_white" />
 
+            <ImageView
+                android:id="@+id/nav"
+                android:layout_width="58dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/nav" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="23dp">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -47,27 +54,33 @@
         android:id="@+id/loginEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="50dp"
         android:ems="10"
         android:hint="Email Address"
         android:inputType="textWebEmailAddress"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/loginPass"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appbar"
+        app:layout_constraintTop_toBottomOf="@+id/title_login"
         tools:visibility="visible" />
 
     <TextView
         android:id="@+id/forgetPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="159dp"
         android:text="Forgot Password?"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/sendToRegister"
-        app:layout_constraintEnd_toEndOf="@+id/sendToRegister"
-        app:layout_constraintStart_toStartOf="@+id/sendToRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
         tools:visibility="visible" />
 
@@ -76,7 +89,10 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="259dp"
+        android:layout_marginStart="192dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="192dp"
+        android:layout_marginBottom="287dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +103,9 @@
         android:id="@+id/sendToRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="93dp"
         android:text="Don't Have an Account? Create Account"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/progressBar2"
@@ -101,8 +119,10 @@
         style="@style/SparkButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="171dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="169dp"
+        android:layout_marginBottom="16dp"
         android:background="#CD1313"
         android:backgroundTint="#D31111"
         android:backgroundTintMode="src_over"
@@ -112,21 +132,25 @@
         app:iconTint="#2196F3"
         app:iconTintMode="src_in"
         app:layout_constraintBottom_toTopOf="@+id/forgetPass"
-        app:layout_constraintEnd_toEndOf="@+id/forgetPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPass" />
 
     <EditText
         android:id="@+id/loginPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginEnd="111dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
-        app:layout_constraintEnd_toEndOf="@+id/loginEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginEmail"
         tools:visibility="visible" />
 
@@ -134,10 +158,10 @@
         android:id="@+id/title_login"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="106dp"
-        android:layout_marginBottom="65dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="32dp"
         android:background="#595959"
         android:gravity="center_vertical|center_horizontal"
         android:text="Login"
