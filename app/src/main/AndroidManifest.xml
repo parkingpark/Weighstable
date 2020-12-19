@@ -18,9 +18,6 @@
             android:name=".Login"
             android:exported="true" />
         <activity
-            android:name=".Logout"
-            android:exported="true" />
-        <activity
             android:name=".Register"
             android:exported="true" />
 
