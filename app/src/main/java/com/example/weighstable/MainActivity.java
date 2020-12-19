@@ -440,8 +440,8 @@ public class MainActivity extends AppCompatActivity {
     private void addNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "My Notification");
         builder.setContentTitle("Weighstable");
-        builder.setContentText("Your trash is full! Its " + household.getPeople()[0] + "'s turn.");
         if (household.getPeople() != null) {
+            builder.setContentText("Your trash is full! Its " + household.getPeople()[0] + "'s turn.");
 
         } else {
             builder.setContentText("Your trash is full!");

@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="430dp"
+        android:layout_height="146dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/reportListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbarLayout3"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:background="#FF7700"
 
+            android:background="#FF7700"
             app:contentScrim="?android:attr/colorFocusedHighlight"
+
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
             app:toolbarId="@+id/toolbar">
 
             <ImageView
                 android:id="@+id/app_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:srcCompat="@drawable/logo_white" />
 
             <ImageView
@@ -41,8 +39,8 @@
 
         <TextView
             android:id="@+id/title_Log"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_width="214dp"
+            android:layout_height="47dp"
             android:layout_marginStart="100dp"
             android:layout_marginTop="30dp"
 
@@ -78,13 +76,12 @@
 
     <ListView
         android:id="@+id/reportListView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="435dp"
+        android:layout_height="360dp"
         android:layout_marginBottom="330dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nav_view">
+        app:layout_constraintStart_toStartOf="parent">
 
     </ListView>
 
@@ -107,15 +104,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="31dp"
         android:background="#595959"
         android:divider="@color/white"
         android:dividerHeight="2dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/reportListView"
-        app:layout_constraintStart_toStartOf="@+id/appbar"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
