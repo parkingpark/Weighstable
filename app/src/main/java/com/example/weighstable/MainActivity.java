@@ -2,6 +2,7 @@ package com.example.weighstable;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         checkForHousehold();
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_LOW);
+            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_HIGH);
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
@@ -330,7 +331,18 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         sensor_timer.schedule(task_process, 0, 1000);
+        Timer limitTimer = new Timer();
+        TimerTask limtTask = new TimerTask() {
+            @Override
+            public void run() {
 
+                if (Double.parseDouble(weightData.toString()) >= household.getwLimit() || Double.parseDouble(capacityData.toString()) >= household.getcLimit()) {
+                    addNotification();
+                }
+            }
+        };
+        limtTask.run();
+        limitTimer.schedule(limtTask, 0, 300000);
 
         report.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -425,49 +437,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        handler.postDelayed(runnable = new Runnable() {
-            public void run() {
-                handler.postDelayed(runnable, delay);
-                try {
-                    if (Integer.valueOf(weightData.toString()) >= Integer.valueOf(household.getwLimit())) {
-                        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "My Notification");
-                        builder.setContentTitle("Weighstable");
-                        if (household.getPeople() != null) {
-                            builder.setContentText("Your trash is full! Its " + household.getPeople()[0] + "'s turn.");
-                        } else {
-                            builder.setContentText("Your trash is full!");
-                        }
-                        builder.setSmallIcon(R.drawable.ic_launcher_background);
-                        builder.setAutoCancel(true);
-                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
-                        managerCompat.notify(1, builder.build());
-                    }
-                } catch (Exception e) {
+    private void addNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "My Notification");
+        builder.setContentTitle("Weighstable");
+        builder.setContentText("Your trash is full! Its " + household.getPeople()[0] + "'s turn.");
+        if (household.getPeople() != null) {
 
-                }
-                try {
-                    if (Integer.valueOf(capacityData.toString()) >= Integer.valueOf(household.getcLimit())) {
-                        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "My Notification");
-                        builder.setContentTitle("Weighstable");
-                        if (household.getPeople() != null) {
-                            builder.setContentText("Your trash is full! Its " + household.getPeople()[0] + "'s turn.");
-                        } else {
-                            builder.setContentText("Your trash is full!");
-                        }
-                        builder.setSmallIcon(R.drawable.ic_launcher_background);
-                        builder.setAutoCancel(true);
-                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
-                        managerCompat.notify(1, builder.build());
-                    }
-                } catch (Exception e) {
+        } else {
+            builder.setContentText("Your trash is full!");
+        }
+        builder.setSmallIcon(R.drawable.w);
 
-                }
-            }
-        }, delay);
-        super.onResume();
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
     }
 
 }
